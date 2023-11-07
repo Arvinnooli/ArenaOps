@@ -7,9 +7,11 @@ create table Customer(
     age int,
     contact_no char(10),
     ticket_id int not null,
-    location varchar(7) not null
+    location varchar(7) not null,
+    Userpassword varchar(20) not null
+);
+
     
-    );
 
 create table Ticket(
 	ticket_id int primary key,
@@ -47,6 +49,37 @@ create table Event_(
     stadium_id int,
     time_slot_id int
     );
+create table Stands(
+	stand_name varchar(20) primary key,
+    stand_price int not null,
+    stadium_id int
+);
+create table Vendor(
+	Vendor_id int primary key,
+    stand_name varchar(20),
+    Vendor_name varchar(20),
+    category enum('food','merch'),
+    stadium_id int
+    );
+create table staff(
+	staff_id int primary key,
+	staff_start_time time,
+    staff_end_time time,
+    type_ enum('hospitality','ticketing','security','cleaning'),
+    stadium_id int
+    );
+create table stadium(
+	stadium_id int primary key,
+    stadium_name varchar(20),
+    stadium_location varchar(20)
+    );
+    
+	
+
+    
+    
+    
+
     
 
     
