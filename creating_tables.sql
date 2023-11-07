@@ -73,6 +73,8 @@ create table stadium(
     stadium_name varchar(20),
     stadium_location varchar(20)
     );
+
+    
     
 	
 
