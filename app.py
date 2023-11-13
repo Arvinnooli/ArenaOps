@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_mysqldb import MySQL
 
+
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
 app.config['MYSQL_HOST'] = 'localhost'
@@ -9,6 +10,8 @@ app.config['MYSQL_PASSWORD'] = 'lmao#711'
 app.config['MYSQL_DB'] = 'stadium_database'
 
 db = MySQL(app)
+
+
 
 # Route for the login page
 @app.route('/', methods=['GET', 'POST'])
@@ -23,7 +26,7 @@ def login():
         cur.close()
 
         if user and user['password'] == password:
-            return redirect(url_for('events'))
+            return redirect('events')
         else:
             return "INVALID USER"
 

@@ -1,3 +1,4 @@
+create database stadium_database;
 use stadium_database;
 create table Customer(
 	customer_id int primary key,
@@ -6,8 +7,8 @@ create table Customer(
     gender ENUM('M','F') not null,
     age int,
     contact_no char(10),
-    ticket_id int not null,
-    location varchar(7) not null,
+    ticket_id int,
+    location varchar(7),
     Userpassword varchar(20) not null
 );
 
@@ -36,11 +37,14 @@ create table Timing(
     );
 create table Seats(
 
-	Seat_no int primary key,
+	Seat_no int ,
     status_ enum('booked','available') default 'available',
     ticket_id int,
-    stand_name varchar(20)
+    stand_name varchar(20),
+    PRIMARY KEY (Seat_no, stand_name)
     );
+
+
 create table Event_(
 	event_id int primary key,
     event_name varchar(20),
@@ -73,6 +77,76 @@ create table stadium(
     stadium_name varchar(20),
     stadium_location varchar(20)
     );
+    
+-- Add foreign key constraint for ticket_id
+ALTER TABLE Customer
+ADD CONSTRAINT fk_ticket_customer
+FOREIGN KEY (ticket_id)
+REFERENCES Ticket(ticket_id)
+on update cascade;
+
+-- Add foreign key constraint for location
+ALTER TABLE Customer
+ADD CONSTRAINT fk_location_customer
+FOREIGN KEY (location)
+REFERENCES Parking(location)
+on update cascade;
+
+-- Add foreign key constraint for stadium_id
+ALTER TABLE Event_
+ADD CONSTRAINT fk_stadium_event
+FOREIGN KEY (stadium_id)
+REFERENCES stadium(stadium_id)
+ON UPDATE CASCADE;
+
+
+-- Add foreign key constraint for time_slot_id
+ALTER TABLE Event_
+ADD CONSTRAINT fk_time_slot
+FOREIGN KEY (time_slot_id)
+REFERENCES Timing(time_slot_id)
+ON UPDATE CASCADE;
+
+ALTER TABLE Seats
+ADD CONSTRAINT fk_ticket_seats
+FOREIGN KEY (ticket_id)
+REFERENCES Ticket(ticket_id);
+
+-- Add foreign key constraint for stadium_id in Stands table
+ALTER TABLE Stands
+ADD CONSTRAINT fk_stadium_stands
+FOREIGN KEY (stadium_id)
+REFERENCES stadium(stadium_id)
+ON UPDATE CASCADE; 
+
+-- Add foreign key constraint for stadium_id in Vendor table
+ALTER TABLE Vendor
+ADD CONSTRAINT fk_stadium_vendor
+FOREIGN KEY (stadium_id)
+REFERENCES stadium(stadium_id)
+ON UPDATE CASCADE; 
+
+-- Add foreign key constraint for stadium_id in staff table
+ALTER TABLE staff
+ADD CONSTRAINT fk_stadium_staff
+FOREIGN KEY (stadium_id)
+REFERENCES stadium(stadium_id)
+ON UPDATE CASCADE;
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
 
     
     
