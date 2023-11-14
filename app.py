@@ -1,41 +1,34 @@
 from flask import Flask, render_template, request, redirect, url_for
-from flask_mysqldb import MySQL
+import database_functions
+
 
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'lmao#711'
-app.config['MYSQL_DB'] = 'stadium_database'
 
-db = MySQL(app)
 
 
 
 # Route for the login page
-@app.route('/', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+@app.route('/')
+def home():
 
-        cur = db.connection.cursor()
-        cur.execute("SELECT * FROM Users WHERE username = %s", (username,))
-        user = cur.fetchone()
-        cur.close()
+   return render_template('home.html')
 
-        if user and user['password'] == password:
-            return redirect('events')
-        else:
-            return "INVALID USER"
 
-    return render_template('login.html')
 
 # Route for the events page
 @app.route('/events')
 def events():
+    events=database_functions.fetch_events()
+    
+    
     return render_template('events.html')
+
+@app.route('/admin/create_event')
+def create_event():
+    
+
 
 @app.route('/',methods=['GET'])
 def home():

@@ -8,9 +8,9 @@ create table Customer(
     age int,
     contact_no char(10),
     ticket_id int,
-    location varchar(7),
-    Userpassword varchar(20) not null
+    location varchar(7)
 );
+
 
     
 
@@ -125,6 +125,12 @@ ADD CONSTRAINT fk_stadium_vendor
 FOREIGN KEY (stadium_id)
 REFERENCES stadium(stadium_id)
 ON UPDATE CASCADE; 
+
+ALTER TABLE Vendor
+ADD CONSTRAINT fk_standname_vendor
+FOREIGN KEY (stand_name)
+REFERENCES stands(stand_name)
+ON UPDATE CASCADE;
 
 -- Add foreign key constraint for stadium_id in staff table
 ALTER TABLE staff
