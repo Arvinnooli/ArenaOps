@@ -26,7 +26,9 @@ BEGIN
 END //
 
 DELIMITER ;
+
 DELIMITER //
+
 
 CREATE FUNCTION CreateEventWithTimeSlot(
     eventName VARCHAR(20),
@@ -51,5 +53,8 @@ BEGIN
   RETURN newEventId;
 END //
 DELIMITER ;
+
+
+
 
     
