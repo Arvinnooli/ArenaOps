@@ -9,11 +9,7 @@ app = Flask(__name__, template_folder="templates", static_folder="static")
 
 
 
-# Route for the login page
-@app.route('/')
-def home():
 
-   return render_template('home.html')
 
 
 
@@ -27,7 +23,7 @@ def events():
 
 @app.route('/admin/create_event')
 def create_event():
-    
+    pass
 
 
 @app.route('/',methods=['GET'])

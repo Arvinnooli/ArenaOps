@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Events</title>
+{% endblock %}
+{% block body %}
+<h1>Events</h1>
+    <table>
+        <tr>
+            <th>Event</th>
+           
+            <th>Action</th>
+        </tr>
+        {% for event in events%}
+        
+            <tr>
+                <td>{{event[0]}}</td>
+                
+                <td>
+            <a href="/book/{{event[0]}}">Book</a></td>
+            </tr>
+        {%endfor%}
+    </table>
