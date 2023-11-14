@@ -23,10 +23,31 @@ def events():
     print(events)
     return render_template('events.html',events=events)
 
-@app.route('/admin/create_event')
-def create_event():
+@app.route('/admin')
+def admin():
+    return render_template('admin_page.html')
 
-    pass
+@app.route('/admin/create_event',methods=['POST','GET'])
+def create_event():
+    if request.method=='POST':
+        event_name=request.form[event_name]
+        no_of_seats = int(request.form['no_of_seats'])
+        event_type = request.form['event_type']
+        stadium_id = int(request.form['stadium_id'])
+        event_date = request.form['event_date']
+        start_time = request.form['start_time']
+        end_time = request.form['end_time']
+        
+        functionalites.create_event(event_name,no_of_seats,event_type,stadium_id,event_date,start_time,end_time)
+        return redirect('/admin')
+        
+    return render_template('create_event.html')
+    
+
+
+    
+
+    
 
 
 @app.route('/book/<int:id>')
