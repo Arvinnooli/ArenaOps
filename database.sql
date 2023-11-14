@@ -1,4 +1,5 @@
 create database stadium_database;
+
 use stadium_database;
 create table Customer(
 	customer_id int primary key,

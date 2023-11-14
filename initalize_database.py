@@ -3,7 +3,7 @@ import database_functions as df
 df.insert_stadium(1,"StadiumA","Bangalore")
 
 #insert stands
-   # Insert Stands
+# Insert Stands
 stands_data = [
     ('StandA', 2000, 1),
     ('StandB', 1500, 1),
@@ -37,7 +37,6 @@ print("Time slots inserted successfully.")
 events_data = [
     ('Concert1', 300, 'concert', 1, 1), 
     ('SportsEvent1', 350, 'Sport', 1, 2),
-   
 ]
 
 for event in events_data:

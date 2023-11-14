@@ -5,8 +5,9 @@ body, h1, h2, h3, p, ul, ol, li, form, input, button {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family:cursive;
     color: #333;
+    font-size: 40px;
 }
 
 /* Global styles */
@@ -14,70 +15,47 @@ body {
     background-color: #8ab6d6; /* Light blue background */
 }
 
-/* Form styles */
-form {
-    margin: 20px;
-    padding: 20px;
-    background-color: #fff; /* White form background */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Center the title */
+h1 {
+    text-align: center;
+    margin-top: 50px; /* Adjust as needed */
 }
 
-input[type="text"],
-input[type="password"],
-input[type="date"],
-select {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+/* Stylish box for buttons */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-input[type="submit"],
-input[type="button"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
+.button-container {
+    text-align: center;
+}
+
+.button-container button {
+    padding: 15px 40px; /* Adjust as needed */
+    margin: 10px;
     border: none;
-    border-radius: 4px;
-    background-color: #4CAF50; /* Green submit button */
+    border-radius: 8px;
+    background-color: rgb(233, 89, 67) 175, 168); /* Green button background */
     color: white;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover,
-input[type="button"]:hover {
-    background-color: #45a049; /* Darker green on hover */
+.button-container button:hover {
+    background-color: #4cdf54; /* Darker green on hover */
 }
 
-/* Link styles */
+/* Set text color of the link */
 a {
-    display: block;
-    text-decoration: none;
-    color: #333;
-    margin: 5px 0;
+    color: white;
 }
 
+/* Change link color on hover */
 a:hover {
     text-decoration: underline;
-}
-
-/* Header styles */
-h2 {
-    margin: 20px;
-    text-align: center;
-}
-
-/* Payment page button */
-input[type="button"][value="Done"] {
-    width: 200px;
-    margin: 20px auto;
-}
-
-/* Ticket confirmation styles */
-h2 {
-    margin: 20px auto;
-    text-align: center;
+    color: white;
 }

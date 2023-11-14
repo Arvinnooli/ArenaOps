@@ -2,14 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import database_functions
 import functionalites
 
-
-
 app = Flask(__name__, template_folder="templates", static_folder="static")
-
-
-
-
-
 
 @app.route('/',methods=['GET'])
 def home():
