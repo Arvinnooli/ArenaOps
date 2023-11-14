@@ -1,24 +1,10 @@
-<!-- {% extends 'admin_page.html' %}
-{% block head %}
-<title>welcome admin</title>
-{% endblock %}
-{% block body %}
-<div>
-    <h2>Pick an Event</h2>
-    {% for event in events %}
-        <a href="/book/{{ event[0] }}">{{ event[1] }}</a>
-    {% endfor %}
-</div>
-{% endblock %}
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page - Stadium Management System</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="static\css\styles.css">
 </head>
 <body>
 
@@ -32,7 +18,7 @@
             <div class="button-box" onclick="location.href='manage_staff.html'">
                 <h2>Staff</h2>
             </div>
-            <div class="button-box" onclick="location.href='manage_vendor.html'">
+            <div class="button-box" onclick="location.href='/admin/manage_vendor'">
                 <h2>Vendor</h2>
             </div>
         </div>

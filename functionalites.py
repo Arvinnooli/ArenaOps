@@ -4,7 +4,7 @@ import  database_functions as df
 connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="lmao#711",
+password="1234",
 database="stadium_database"
 )
 def fetch_events():
@@ -82,7 +82,7 @@ where event_id=%s''',(event_id,) )
     stand_prices=cursor.fetchall()
     return stand_prices
 
-def show_available_seats(event_id,stand_name):
+def show_available_seats(event_id):
     cursor=connection.cursor()
     cursor.execute('''SELECT s.Seat_no, s.stand_name
 FROM Seats s

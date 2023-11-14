@@ -33,13 +33,13 @@ def create_event():
         
         functionalites.create_event(event_name,no_of_seats,event_type,stadium_id,event_date,start_time,end_time)
         return redirect('/admin/manage_event')
-        
-    return render_template('create_event.html')
+    else:  
+        return render_template('create_event.html')
 
 @app.route('/admin/manage_event')
 def manage_event():
     events=functionalites.fetch_events()
-    return render_template('manage_event.html')
+    return render_template('manage_event.html',events=events)
 
 @app.route('/admin/delete_event/<int:id>')
 def delete_event(id):
@@ -49,7 +49,8 @@ def delete_event(id):
 @app.route('/admin/manage_vendor')
 def manage_vendor():
     vendors = functionalites.fetch_vendors()
-    return render_template('manage_vendors.html', vendors=vendors)
+    print(vendors)
+    return render_template('manage_vendor.html', vendors=vendors)
 @app.route('/admin/create_vendor')
 def create_vendor():
     if request.method == 'POST':
@@ -114,9 +115,9 @@ def payment():
 
     return render_template('payment.html',)
 
-@app.route('/payment/<')
-def book(seats,event_id,stand_name,payment_mode,price):
-    functionalites.book()
+# @app.route('/payment')
+# def book(seats,event_id,stand_name,payment_mode,price):
+#     functionalites.book()
 
 # Route for the ticket confirmation page
 @app.route('/ticket')
