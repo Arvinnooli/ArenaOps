@@ -4,7 +4,7 @@ import  database_functions as df
 connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
 def fetch_events():
@@ -78,7 +78,7 @@ def show_available_seats(event_id,stand_name):
 FROM Seats s
 JOIN Ticket t ON s.ticket_id = t.ticket_id
 WHERE s.ticket_id IS NULL
-  AND t.event_id = %s;
+AND t.event_id = %s;
 ''',(event_id))
     available_seats=cursor.fetchall()
     return available_seats

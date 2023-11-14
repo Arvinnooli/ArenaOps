@@ -5,7 +5,7 @@ body, h1, h2, h3, p, ul, ol, li, form, input, button {
 }
 
 body {
-    font-family:cursive;
+    font-family: cursive;
     color: #333;
     font-size: 35px;
 }
@@ -33,7 +33,7 @@ h1 {
     text-align: center;
 }
 
-.button-container button {
+.button-box {
     padding: 30px 60px; /* Adjust as needed */
     margin: 20px;
     border: none;
@@ -45,13 +45,14 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-.button-container button:hover {
+.button-box:hover {
     background-color: #4cdf54; /* Darker green on hover */
 }
 
 /* Set text color of the link */
 a {
     color: white;
+    text-decoration: none;
 }
 
 /* Change link color on hover */
