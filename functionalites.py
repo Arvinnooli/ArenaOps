@@ -1,5 +1,6 @@
 import mysql.connector
 from mysql.connector import Error
+import  database_functions as df
 connection = mysql.connector.connect(
 host="localhost",
 user="root",
@@ -81,12 +82,22 @@ WHERE s.ticket_id IS NULL
 ''',(event_id))
     available_seats=cursor.fetchall()
     return available_seats
-    
-def book(seats,event_id,stand_name,payment_mode):
+def get_price(standname):
     cursor=connection.cursor()
-    cursor.execute("insert into ticket")
+    cursor.execute('''select stand_price 
+                   from stands
+                   where standname=%s''')
+    price=cursor.fetchone()
+    return price
+    
+def book(seats,event_id,stand_name,payment_mode,price):
+    cursor=connection.cursor()
+    df.insert_ticket(payment_mode,price,event_id)
+    
     for seat_no in seats:
+        df.update_seat(seat_no,stand_name,ticket_id)
         
+
         
 
 

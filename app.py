@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-import database_functions
+import database_functions as df
 import functionalites
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
@@ -46,9 +46,13 @@ def create_event():
 @app.route('/book/<int:id>',methods=['POST','GET'])
 def book(id):
     if request.method=='POST':
-        seat=request.form['selected_seats']
-        functionalites.book(seats,id)
-        return render_template()
+        seats=request.form['selected_seats']
+        standname='StandA'
+        price=functionalites.get_price(standname)
+        total_price=len(seats)*price
+        
+        
+        return redirect('/payment')
 
 
     
@@ -56,7 +60,10 @@ def book(id):
         no_of_seats=functionalites.no_of_available_seats(id)
         seats=functionalites.show_available_seats(id)
         prices=functionalites.show_stand_price(id)
+
         return render_template('bookingpage.html',id=id,no_of_seats=no_of_seats,seats=seats,stand_prices=prices)
+
+
     
 
 

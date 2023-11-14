@@ -68,6 +68,9 @@ def insert_ticket(mode_of_payment, price, event_id):
         cursor.execute(query, data)
         connection.commit()
         print("Ticket inserted successfully")
+        cursor.execute("last_insert_id()")
+        new_ticket_id=cursor.fetchone()
+        return new_ticket_id
     except Error as e:
         print(f"Error: {e}")
 
