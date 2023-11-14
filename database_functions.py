@@ -101,15 +101,15 @@ def insert_timing(date_, start_time, end_time):
     except Error as e:
         print(f"Error: {e}")
 
-def insert_seats(seat_no, status_, ticket_id, stand_name):
+def insert_seats(seat_no,ticket_id, stand_name):
 
     try:
         cursor = connection.cursor()
         query = """
-        INSERT INTO Seats (Seat_no, status_, ticket_id, stand_name)
-        VALUES (%s, %s, %s, %s)
+        INSERT INTO Seats (Seat_no, ticket_id, stand_name)
+        VALUES (%s, %s, %s)
         """
-        data = (seat_no, status_, ticket_id, stand_name)
+        data = (seat_no,ticket_id, stand_name)
         cursor.execute(query, data)
         connection.commit()
         print("Seat information inserted successfully")

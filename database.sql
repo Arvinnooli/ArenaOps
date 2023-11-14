@@ -40,11 +40,11 @@ create table Timing(
 create table Seats(
 
 	Seat_no int ,
-    status_ enum('booked','available') default 'available',
-    ticket_id int,
+	ticket_id int,
     stand_name varchar(20),
     PRIMARY KEY (Seat_no, stand_name)
     );
+
 
 
 create table Event_(

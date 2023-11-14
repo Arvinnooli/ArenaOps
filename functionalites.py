@@ -49,5 +49,48 @@ def create_event(event_name, no_of_seats, event_type, stadium_id, event_date, st
     except mysql.connector.Error as err:
         print(f"Error: {err}")
         return None
-def show_available_seats(event_id):
+def no_of_available_seats(event_id):
+    cursor=connection.cursor()
+    cursor.callproc("GetAvailableSeatsForEvent",(event_id,))
+    no_of_seats=cursor.fetchone()
+    return no_of_seats
+
+def show_stand_prices(event_id):
+    cursor=connection.cursor()
+    cursor.execute('''SELECT
     
+    stand_name,
+    stand_price
+FROM
+    Event_
+NATURAL JOIN
+    Stadium
+NATURAL JOIN
+    Stands
+where event_id=%s''',(event_id,) )
+    stand_prices=cursor.fetchall()
+    return stand_prices
+
+def show_available_seats(event_id,stand_name):
+    cursor=connection.cursor()
+    cursor.execute('''SELECT s.Seat_no, s.stand_name
+FROM Seats s
+JOIN Ticket t ON s.ticket_id = t.ticket_id
+WHERE s.ticket_id IS NULL
+  AND t.event_id = %s;
+''',(event_id))
+    available_seats=cursor.fetchall()
+    return available_seats
+    
+def book(seats,event_id,stand_name,payment_mode):
+    cursor=connection.cursor()
+    cursor.execute("insert into ticket")
+    for seat_no in seats:
+        
+        
+
+
+
+
+
+

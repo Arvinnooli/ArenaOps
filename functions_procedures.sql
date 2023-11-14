@@ -27,6 +27,7 @@ END //
 
 DELIMITER ;
 
+
 DELIMITER //
 
 
@@ -53,6 +54,17 @@ BEGIN
   RETURN newEventId;
 END //
 DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
