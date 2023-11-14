@@ -19,7 +19,7 @@ def events():
     events=database_functions.fetch_events()
     
     
-    return render_template('events.html')
+    return render_template('events.html',events=events)
 
 @app.route('/admin/create_event')
 def create_event():
