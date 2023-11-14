@@ -2,7 +2,6 @@ import database_functions as df
 #insert stadium
 # df.insert_stadium(1,"StadiumA","Bangalore")
 
-#insert stands
 # Insert Stands
 stands_data = [
     ('StandA', 2000, 1),
@@ -11,7 +10,7 @@ stands_data = [
     ('StandD', 1000, 1),
 ]
 for stand in stands_data:
-    # df.insert_stands(*stand)
+    df.insert_stands(*stand)
 
     # Insert Seats for each Stand
     stand_name = stand[0]
@@ -22,7 +21,7 @@ print("Data inserted successfully.")
 
 
 
-# Insert time slots
+# # Insert time slots
 # time_slots_data = [
 #     ('2023-11-15', '18:00:00', '20:00:00'),
 #     ('2023-11-15', '20:30:00', '22:30:00'),
@@ -34,12 +33,12 @@ print("Data inserted successfully.")
 
 # print("Time slots inserted successfully.")
 
-# events_data = [
-#     ('Concert1', 300, 'concert', 1, 1), 
-#     ('SportsEvent1', 350, 'Sport', 1, 2),
-# ]
+events_data = [
+    ('Concert1', 300, 'concert', 1, 1), 
+    ('SportsEvent1', 350, 'Sport', 1, 2),
+]
 
-# for event in events_data:
-#     df.insert_event(*event)
+for event in events_data:
+    df.insert_event(*event)
 
 

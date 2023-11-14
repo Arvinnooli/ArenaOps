@@ -1,4 +1,4 @@
-{% extends 'admin_page.html' %}
+<!-- {% extends 'admin_page.html' %}
 {% block head %}
 <title>welcome admin</title>
 {% endblock %}
@@ -10,4 +10,33 @@
     {% endfor %}
 </div>
 {% endblock %}
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page - Stadium Management System</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+    <h1>Manage</h1>
+
+    <div class="container">
+        <div class="button-container">
+            <div class="button-box" onclick="location.href='manage_event.html'">
+                <h2>Event</h2>
+            </div>
+            <div class="button-box" onclick="location.href='manage_staff.html'">
+                <h2>Staff</h2>
+            </div>
+            <div class="button-box" onclick="location.href='manage_vendor.html'">
+                <h2>Vendor</h2>
+            </div>
+        </div>
+    </div>
+
+</body>
 </html>

@@ -5,7 +5,7 @@ body, h1, h2, h3, p, ul, ol, li, form, input, button {
 }
 
 body {
-    font-family:cursive;
+    font-family: cursive;
     color: #333;
     font-size: 35px;
 }
@@ -33,7 +33,7 @@ h1 {
     text-align: center;
 }
 
-.button-container button {
+.button-box {
     padding: 30px 60px; /* Adjust as needed */
     margin: 20px;
     border: none;
@@ -45,78 +45,18 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-.button-container button:hover {
+.button-box:hover {
     background-color: #4cdf54; /* Darker green on hover */
 }
 
 /* Set text color of the link */
 a {
     color: white;
+    text-decoration: none;
 }
 
 /* Change link color on hover */
 a:hover {
     text-decoration: underline;
     color: white;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Add your existing CSS rules here */
-
-/* Event container styles */
-.event-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin: 100px;
-}
-/* Center the title */
-h2 {
-    text-align: center;
-    margin-top: 50px; /* Adjust as needed */
-}
-/* Event box styles */
-.event-box {
-    width: 200px; /* Adjust the width as needed */
-    margin: 15px;
-    padding: 50px;
-    border-radius: 8px;
-    background-color:rgb(57, 200, 181); /* White background */
-    transition: background-color 0.3s ease;
-}
-
-.event-box:hover {
-    background-color: #4cdf54; /* Darker green on hover */
-}
-
-/* Image styles */
-.event-box img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-/* Link styles */
-.event-box a {
-    display: block;
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-
-.event-box a:hover {
-    text-decoration: underline;
 }

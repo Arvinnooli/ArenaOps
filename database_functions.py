@@ -3,7 +3,7 @@ from mysql.connector import Error
 connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
 
