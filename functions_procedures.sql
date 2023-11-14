@@ -26,7 +26,9 @@ BEGIN
 END //
 
 DELIMITER ;
+
 DELIMITER //
+
 
 CREATE FUNCTION CreateEventWithTimeSlot(
     eventName VARCHAR(20),
@@ -51,16 +53,7 @@ BEGIN
   RETURN newEventId;
 END //
 DELIMITER ;
--- Call the function and get the result
-SELECT CreateEventWithTimeSlot(
-    'Concert',    -- eventName
-    100,          -- noOfSeats
-    'concert',     -- eventType
-    1,             -- stadiumId
-    '2023-11-15',  -- eventDate
-    '18:00:00',    -- startTime
-    '22:00:00'     -- endTime
-) AS NewEventId;
+
 
 
 
