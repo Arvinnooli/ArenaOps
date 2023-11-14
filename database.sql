@@ -30,11 +30,12 @@ create table Parking(
 
 
 create table Timing(
-	time_slot_id int primary key,
+	time_slot_id int auto_increment key,
     date_ date,
     start_time time,
     end_time time
     );
+
 create table Seats(
 
 	Seat_no int ,
@@ -46,13 +47,14 @@ create table Seats(
 
 
 create table Event_(
-	event_id int primary key,
+	event_id int auto_increment primary key,
     event_name varchar(20),
     no_of_seats int,
     type_ enum('Sport','concert'),
     stadium_id int,
     time_slot_id int
     );
+
 create table Stands(
 	stand_name varchar(20) primary key,
     stand_price int not null,
@@ -73,7 +75,7 @@ create table staff(
     stadium_id int
     );
 create table stadium(
-	stadium_id int primary key,
+	stadium_id int  primary key,
     stadium_name varchar(20),
     stadium_location varchar(20)
     );
@@ -107,6 +109,12 @@ FOREIGN KEY (time_slot_id)
 REFERENCES Timing(time_slot_id)
 ON UPDATE CASCADE;
 
+ALTER TABLE Ticket
+ADD constraint fk_event_id_ticket
+foreign key(event_id)
+references Event_(event_id)
+on update cascade;
+
 ALTER TABLE Seats
 ADD CONSTRAINT fk_ticket_seats
 FOREIGN KEY (ticket_id)
@@ -138,6 +146,11 @@ ADD CONSTRAINT fk_stadium_staff
 FOREIGN KEY (stadium_id)
 REFERENCES stadium(stadium_id)
 ON UPDATE CASCADE;
+
+
+
+
+
 
 
 

@@ -26,7 +26,7 @@ def fetch_events():
         print("error while fetching event")
 
 
-def insert_customer(connection, first_name, last_name, gender, age, contact_no, ticket_id, location, user_password):
+def insert_customer(first_name, last_name, gender, age, contact_no, ticket_id, location, user_password):
   
     try:
         cursor = connection.cursor()
@@ -41,7 +41,7 @@ def insert_customer(connection, first_name, last_name, gender, age, contact_no, 
     except Error as e:
         print(f"Error: {e}")
 
-def insert_event(connection, event_name, no_of_seats, type_, stadium_id, time_slot_id):
+def insert_event(event_name, no_of_seats, type_, stadium_id, time_slot_id):
 
     try:
         cursor = connection.cursor()
@@ -56,7 +56,7 @@ def insert_event(connection, event_name, no_of_seats, type_, stadium_id, time_sl
     except Error as e:
         print(f"Error: {e}")
 
-def insert_ticket(connection, mode_of_payment, price, event_id):
+def insert_ticket(mode_of_payment, price, event_id):
    
     try:
         cursor = connection.cursor()
@@ -71,7 +71,7 @@ def insert_ticket(connection, mode_of_payment, price, event_id):
     except Error as e:
         print(f"Error: {e}")
 
-def insert_parking(connection, location, number_plate, status, automobile_type):
+def insert_parking(location, number_plate, status, automobile_type):
     """Insert parking information into the Parking table.""" 
     try:
         cursor = connection.cursor()
@@ -86,7 +86,7 @@ def insert_parking(connection, location, number_plate, status, automobile_type):
     except Error as e:
         print(f"Error: {e}")
 
-def insert_timing(connection, date_, start_time, end_time):
+def insert_timing(date_, start_time, end_time):
   
     try:
         cursor = connection.cursor()
@@ -101,7 +101,7 @@ def insert_timing(connection, date_, start_time, end_time):
     except Error as e:
         print(f"Error: {e}")
 
-def insert_seats(connection, seat_no, status_, ticket_id, stand_name):
+def insert_seats(seat_no, status_, ticket_id, stand_name):
 
     try:
         cursor = connection.cursor()
@@ -116,7 +116,7 @@ def insert_seats(connection, seat_no, status_, ticket_id, stand_name):
     except Error as e:
         print(f"Error: {e}")
 
-def insert_stadium(connection, stadium_name, stadium_location):
+def insert_stadium(stadium_id,stadium_name, stadium_location):
 
     try:
         cursor = connection.cursor()
@@ -124,14 +124,14 @@ def insert_stadium(connection, stadium_name, stadium_location):
         INSERT INTO stadium (stadium_id,stadium_name, stadium_location)
         VALUES (%s,%s, %s)
         """
-        data = (stadium_name, stadium_location)
+        data = (stadium_id,stadium_name, stadium_location)
         cursor.execute(query, data)
         connection.commit()
         print("Stadium information inserted successfully")
     except Error as e:
         print(f"Error: {e}")
 
-def insert_stands(connection, stand_name, stand_price, stadium_id):
+def insert_stands(stand_name, stand_price, stadium_id):
    
     try:
         cursor = connection.cursor()
@@ -146,7 +146,7 @@ def insert_stands(connection, stand_name, stand_price, stadium_id):
     except Error as e:
         print(f"Error: {e}")
 
-def insert_vendor(connection, stand_name, vendor_name, category, stadium_id):
+def insert_vendor(stand_name, vendor_name, category, stadium_id):
     """Insert vendor information into the Vendor table."""
     try:
         cursor = connection.cursor()
@@ -160,7 +160,7 @@ def insert_vendor(connection, stand_name, vendor_name, category, stadium_id):
         print("Vendor information inserted successfully")
     except Error as e:
         print(f"Error: {e}")
-def insert_staff(connection, staff_start_time, staff_end_time, type_, stadium_id):
+def insert_staff(staff_start_time, staff_end_time, type_, stadium_id):
     """Insert staff information into the staff table."""
     try:
         cursor = connection.cursor()
