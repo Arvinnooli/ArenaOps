@@ -23,7 +23,7 @@ def admin():
 @app.route('/admin/create_event',methods=['POST','GET'])
 def create_event():
     if request.method=='POST':
-        event_name=request.form[event_name]
+        event_name=request.form['event_name']
         no_of_seats = int(request.form['no_of_seats'])
         event_type = request.form['event_type']
         stadium_id = int(request.form['stadium_id'])
@@ -32,15 +32,57 @@ def create_event():
         end_time = request.form['end_time']
         
         functionalites.create_event(event_name,no_of_seats,event_type,stadium_id,event_date,start_time,end_time)
-        return redirect('/admin')
+        return redirect('/admin/manage_event')
         
     return render_template('create_event.html')
+
+@app.route('/admin/manage_event')
+def manage_event():
+    events=functionalites.fetch_events()
+    return render_template('manage_event.html')
+
+@app.route('/admin/delete_event/<int:id>')
+def delete_event(id):
+    df.delete_event(id)
+    return render_template('manage_event.html')
+
+@app.route('/admin/manage_vendor')
+def manage_vendor():
+    vendors = functionalites.fetch_vendors()
+    return render_template('manage_vendors.html', vendors=vendors)
+@app.route('/admin/create_vendor')
+def create_vendor():
+    if request.method == 'POST':
+        
+        vendor_name = request.form['vendor_name']
+        category = request.form['category']
+        stand_name=request.form['stand_name']
+        stadium_id=request.form['stadium_id']
+       
+
+        
+        df.insert_vendor(stand_name,vendor_name, category,stadium_id)
+        return redirect('/admin/manage_vendors')
+    return render_template('create_vendor.html')
+
+@app.route('/admin/delete_vendor/<int:id>')
+def delete_vendor(id):
+    df.delete_vendor(id)
+    return redirect('/admin/manage_vendor')
+
+
+
+
+
+
+
     
 
 
     
 
     
+
 
 
 @app.route('/book/<int:id>',methods=['POST','GET'])
@@ -52,7 +94,7 @@ def book(id):
         total_price=len(seats)*price
         
         
-        return redirect('/payment')
+        return redirect('/payment',)
 
 
     
@@ -69,12 +111,18 @@ def book(id):
 
 @app.route('/payment')
 def payment():
-    return render_template('payment.html')
+
+    return render_template('payment.html',)
+
+@app.route('/payment/<')
+def book(seats,event_id,stand_name,payment_mode,price):
+    functionalites.book()
 
 # Route for the ticket confirmation page
 @app.route('/ticket')
 def ticket():
     return render_template('ticket.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

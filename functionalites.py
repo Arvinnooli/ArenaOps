@@ -24,6 +24,16 @@ def fetch_events():
         return events
     except:
         print("error while fetching event")
+def fetch_vendors():
+    try:
+        cursor = connection.cursor(dictionary=True)  # Use dictionary cursor to fetch results as dictionaries
+        query = "SELECT * FROM Vendor"
+        cursor.execute(query)
+        vendors = cursor.fetchall()
+        return vendors
+    except Error as e:
+        print(f"Error: {e}")
+        return None
 
 def create_event(event_name, no_of_seats, event_type, stadium_id, event_date, start_time, end_time):
     try:
@@ -93,9 +103,11 @@ def get_price(standname):
 def book(seats,event_id,stand_name,payment_mode,price):
     cursor=connection.cursor()
     df.insert_ticket(payment_mode,price,event_id)
+    ticket_id=df.get_last_inserted_id()
     
     for seat_no in seats:
         df.update_seat(seat_no,stand_name,ticket_id)
+    return None
         
 
         

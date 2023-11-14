@@ -3,28 +3,9 @@ from mysql.connector import Error
 connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
-
-
-
-def fetch_events():
-    try:
-        cursor = connection.cursor()
-        events=cursor.execute('''SELECT
-        e.event_name,
-        t.start_time,
-        t.end_time
-    FROM
-        Event_ e
-    JOIN
-        Timing t ON e.time_slot_id = t.time_slot_id;
-    ''')
-        return events
-    except:
-        print("error while fetching event")
-
 
 def insert_customer(first_name, last_name, gender, age, contact_no, ticket_id, location, user_password):
   
@@ -178,5 +159,48 @@ def insert_staff(staff_start_time, staff_end_time, type_, stadium_id):
     except Error as e:
         print(f"Error: {e}")
 
+def get_last_inserted_id():
+    try:
+        cursor=connection.cursor()
+        cursor.execute("SELECT LAST_INSERT_ID()")
+        last_id = cursor.fetchone()[0]
+        return last_id
+    except:
+        print("error while fetching last inserted id")
 
+def update_seat(seat_no,stand_name,ticket_id):
+    try:
+        cursor = connection.cursor()
+        query = """
+        UPDATE Seats
+        SET ticket_id = %s
+        WHERE Seat_no = %s AND stand_name = %s
+        """
+        data = (ticket_id, seat_no, stand_name)
+        cursor.execute(query, data)
+        connection.commit()
+        print("Seat updated successfully")
+    except Error as e:
+        print(f"Error: {e}")
+
+def delete_event(event_id):
+    try:
+        cursor = connection.cursor()
+        query = "DELETE FROM Event_ WHERE event_id = %s"
+        data = (event_id,)
+        cursor.execute(query, data)
+        connection.commit()
+        print("Event deleted successfully")
+    except Error as e:
+        print(f"Error: {e}")
+def delete_vendor(vendor_id):
+    try:
+        cursor = connection.cursor()
+        query = "DELETE FROM Vendor WHERE Vendor_id = %s"
+        data = (vendor_id,)
+        cursor.execute(query, data)
+        connection.commit()
+        print("Vendor deleted successfully")
+    except Error as e:
+        print(f"Error: {e}")
 
