@@ -1,0 +1,13 @@
+{% extends 'admin_page.html' %}
+{% block head %}
+<title>welcome admin</title>
+{% endblock %}
+{% block body %}
+<div>
+    <h2>Pick an Event</h2>
+    {% for event in events %}
+        <a href="/book/{{ event[0] }}">{{ event[1] }}</a>
+    {% endfor %}
+</div>
+{% endblock %}
+</html>

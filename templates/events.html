@@ -3,11 +3,14 @@
 <title>Stadium Management System-Events</title>
 {% endblock %}
 {% block body %}
-<div>
 <h2>Pick an Event</h2>
-{%for event in events%}
-<a href="/book/{{event[0]}}">{{event[1]}}</a>
-{%endfor%}
+
+<div class="event-container">
+    {% for event in events %}
+        <div class="event-box">
+            <a href="/book/{{ event[0] }}">{{ event[1] }}</a>
+        </div>
+    {% endfor %}
 </div>
-{%endblock%}
+{% endblock %}
 </html>
