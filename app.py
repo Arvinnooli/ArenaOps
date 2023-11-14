@@ -46,11 +46,14 @@ def create_event():
 @app.route('/book/<int:id>',methods=['POST','GET'])
 def book(id):
     if request.method=='POST':
+        seat=request.form['selected_seat']
+        functionalites.book(seat,id)
 
 
     
     else:
-        seats=
+        no_of_seats=functionalites.no_of_available_seats(id)
+        seats=functionalites.show_available_seats(id)
         return render_template('bookingpage.html',id=id,seats=seats)
     
 

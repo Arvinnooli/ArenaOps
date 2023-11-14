@@ -49,4 +49,5 @@ def create_event(event_name, no_of_seats, event_type, stadium_id, event_date, st
     except mysql.connector.Error as err:
         print(f"Error: {err}")
         return None
-
+def show_available_seats(event_id):
+    
