@@ -71,6 +71,9 @@ def delete_vendor(id):
     df.delete_vendor(id)
     return redirect('/admin/manage_vendor')
 
+@app.route('/admin/managestaff')
+
+
 
 
 
@@ -90,7 +93,7 @@ def delete_vendor(id):
 def book(id):
     if request.method=='POST':
         seats=request.form['selected_seats']
-        standname='StandA'
+        standname=request.form['standname']
         price=functionalites.get_price(standname)
         total_price=len(seats)*price
         
