@@ -62,12 +62,13 @@ create table Stands(
     stadium_id int
 );
 create table Vendor(
-	Vendor_id int primary key,
+	Vendor_id int auto_increment primary key,
     stand_name varchar(20),
     Vendor_name varchar(20),
     category enum('food','merch'),
     stadium_id int
     );
+
 create table staff(
 	staff_id int primary key,
 	staff_start_time time,

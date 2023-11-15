@@ -13,11 +13,17 @@
     <div class="container">
         <div class="button-container">
             <div class="button-box">
-                <a href="#">Add Staff</a>
+                <a href="/admin/create_staff">Add Staff</a>
+            </div>
+            {% for event in events %}
+            <div class="event-box">
+                {{ event[1] }}
             </div>
             <div class="button-box">
-                <a href="#">Remove Staff</a>
+                <a href="/admin/delete_staff/{{staff}}">Remove Event</a>
             </div>
+        {% endfor %}
+            
         </div>
     </div>
 
