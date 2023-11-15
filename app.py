@@ -72,6 +72,8 @@ def delete_vendor(id):
     return redirect('/admin/manage_vendor')
 
 @app.route('/admin/managestaff')
+def manage_staff():
+    
 
 
 
