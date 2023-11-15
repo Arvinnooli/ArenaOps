@@ -59,9 +59,6 @@ def create_vendor():
         category = request.form['category']
         stand_name=request.form['stand_name']
         stadium_id=request.form['stadium_id']
-       
-
-        
         df.insert_vendor(stand_name,vendor_name, category,stadium_id)
         return redirect('/admin/manage_vendors')
     return render_template('create_vendor.html')
@@ -75,14 +72,33 @@ def delete_vendor(id):
 def manage_staff():
     
 
+##############################################################################
+@app.route('/admin/manage_staff', methods=['GET'])
+def manage_staff():
+    staff_list = fetch_staff()
+    return render_template('manage_staff.html')
+
+@app.route('/admin/create_staff', methods=['GET', 'POST'])
+def create_staff():
+    if request.method == 'POST':
+        stadium_id = request.form['stadium_id']
+        type_ = request.form['type_']
+        staff_start_time = request.form['staff_start_time']
+        staff_end_time = request.form['staff_end_time']
+        
+        add_staff(staff_name, staff_id, staff_start_time, staff_end_time)
+        return redirect('/admin/manage_staff')
+
+    return render_template('manage_staff.html')
 
 
+@app.route('/admin/delete_staff/<staff_id>')
+def remove_staff(staff_id):
+    delete_staff(staff_id)
+    return redirect('/admin/manage_staff')
+    return render_template('manage_staff.html')
 
-
-
-
-
-    
+############################################################################# 
 
 
     

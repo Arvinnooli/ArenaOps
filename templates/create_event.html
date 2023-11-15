@@ -6,28 +6,46 @@
     <div>
         <h2>Create Event</h2>
         <form method="post" action="/admin/create_event">
-            <label for="event_name">Event Name:</label>
-            <input type="text" name="event_name" required>
+            <div>
+                <label for="event_name">Event Name:</label>
+                <input type="text" name="event_name" required>
+            </div>
 
-            <label for="no_of_seats">Number of Seats:</label>
-            <input type="number" name="no_of_seats" required>
+            <div>
+                <label for="no_of_seats">Number of Seats:</label>
+                <input type="number" name="no_of_seats" required>
+            </div>
 
-            <label for="event_type">Event Type:</label>
-            <input type="text" name="event_type" required>
+            <div>
+                <label for="event_type">Event Type:</label>
+                <input type="text" name="event_type" required>
+            </div>
 
-            <label for="stadium_id">Stadium ID:</label>
-            <input type="number" name="stadium_id" required>
+            <div>
+                <label for="stadium_id">Stadium ID:</label>
+                <input type="number" name="stadium_id" required>
+            </div>
 
-            <label for="event_date">Event Date:</label>
-            <input type="date" name="event_date" required>
+            <div>
+                <label for="event_date">Event Date:</label>
+                <input type="date" name="event_date" required>
+            </div>
 
-            <label for="start_time">Start Time:</label>
-            <input type="time" name="start_time" required>
+            <div>
+                <label for="start_time">Start Time:</label>
+                <input type="time" name="start_time" required>
+            </div>
 
-            <label for="end_time">End Time:</label>
-            <input type="time" name="end_time" required>
-
-            <input type="submit" value="Create Event">
+            <div>
+                <label for="end_time">End Time:</label>
+                <input type="time" name="end_time" required>
+            </div>
+            
+            <div>
+                <input type="submit" value="Create Event" class="submit-button">
+            </div>
+            
+            
         </form>
     </div>
 {% endblock %}

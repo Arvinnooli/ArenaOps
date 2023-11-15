@@ -1,7 +1,11 @@
 /* Reset default browser styles */
-body, h1, h2, h3, p, ul, ol, li, form, input, button {
+body, h1, h2, p, ul, ol, li, form, input, button {
     margin: 0;
     padding: 0;
+}
+
+body h3 {
+    margin: right;
 }
 
 body {
@@ -34,14 +38,14 @@ h1 {
 }
 
 .button-box {
-    padding: 30px 60px; /* Adjust as needed */
-    margin: 20px;
+    padding: 20px 50px; /* Adjust as needed */
+    margin: 15px;
     border: none;
     border-radius: 8px;
     background-color: rgb(57, 200, 181); /* Green button background */
     color: white;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     transition: background-color 0.3s ease;
 }
 
@@ -58,23 +62,7 @@ a {
 /* Change link color on hover */
 a:hover {
     text-decoration: underline;
-    color: white;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Add your existing CSS rules here */
 
 /* Event container styles */
 .event-container {
@@ -83,18 +71,20 @@ a:hover {
     flex-wrap: wrap;
     margin: 100px;
 }
+
 /* Center the title */
 h2 {
     text-align: center;
     margin-top: 50px; /* Adjust as needed */
 }
+
 /* Event box styles */
 .event-box {
     width: 200px; /* Adjust the width as needed */
     margin: 15px;
     padding: 50px;
     border-radius: 8px;
-    background-color:rgb(57, 200, 181); /* White background */
+    background-color: rgb(57, 200, 181); /* White background */
     transition: background-color 0.3s ease;
 }
 
@@ -120,4 +110,43 @@ h2 {
 
 .event-box a:hover {
     text-decoration: underline;
+}
+
+
+
+
+
+
+
+/* Add this to your existing CSS or create a new one */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.event-form {
+    text-align: center;
+}
+
+.event-form label,
+.event-form input {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.submit-button {
+    padding: 20px 40px; /* Adjust as needed */
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(57, 200, 181);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #4cdf54;
 }
