@@ -2,6 +2,7 @@
 {% block head %}
 <title>Stadium Management System</title>
 {% endblock %}
+
 {% block body %}
 
     <h1>Manage Event</h1>
@@ -9,14 +10,18 @@
     <div class="container">
     
         <div class="button-container">
+            <h4>New Events</h4>
             <div class="button-box">
                 <a href="/admin/create_event">Add Event</a>
             </div>
+            <h4>Edit current events</h4>
+
             {% for event in events %}
         <div class="event-box">
             {{ event[1] }}
         </div>
         <div class="button-box">
+    
             <a href="/admin/delete_event/{{event}}">Remove Event</a>
         </div>
     {% endfor %}
