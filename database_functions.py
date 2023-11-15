@@ -3,7 +3,7 @@ from mysql.connector import Error
 connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
 
@@ -38,7 +38,7 @@ def insert_event(event_name, no_of_seats, type_, stadium_id, time_slot_id):
         print(f"Error: {e}")
 
 def insert_ticket(mode_of_payment, price, event_id):
-   
+
     try:
         cursor = connection.cursor()
         query = """

@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% block head %}
 <title>Stadium Management System</title>
@@ -7,8 +6,12 @@
 <h1>Stadium Management System</h1>
 <div class="container">
     <div class="button-container">
-        <button><a href="/events">Go to Events</a></button>
-        <button><a href="/login">Admin login</a></button>
+        <div class="button-box">
+            <a href="/events">Go to Events</a>
+        </div>
+        <div class="button-box">
+            <a href="/login">Admin login</a>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -21,17 +21,17 @@ print("Data inserted successfully.")
 
 
 
-# # Insert time slots
-# time_slots_data = [
-#     ('2023-11-15', '18:00:00', '20:00:00'),
-#     ('2023-11-15', '20:30:00', '22:30:00'),
-#     # Add more time slots as needed
-# ]
+# Insert time slots
+time_slots_data = [
+    ('2023-11-15', '18:00:00', '20:00:00'),
+    ('2023-11-15', '20:30:00', '22:30:00'),
+    # Add more time slots as needed
+]
 
-# for time_slot in time_slots_data:
-#     df.insert_timing(*time_slot)
+for time_slot in time_slots_data:
+    df.insert_timing(*time_slot)
 
-# print("Time slots inserted successfully.")
+print("Time slots inserted successfully.")
 
 events_data = [
     ('Concert1', 300, 'concert', 1, 1), 
