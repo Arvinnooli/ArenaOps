@@ -49,8 +49,8 @@ def delete_event(id):
 @app.route('/admin/manage_vendor')
 def manage_vendor():
     vendors = functionalites.fetch_vendors()
-    print(vendors)
     return render_template('manage_vendor.html', vendors=vendors)
+
 @app.route('/admin/create_vendor')
 def create_vendor():
     if request.method == 'POST':
@@ -68,20 +68,19 @@ def delete_vendor(id):
     df.delete_vendor(id)
     return redirect('/admin/manage_vendor')
 
-@app.route('/admin/managestaff')
-def manage_staff():
+
     
 
-##############################################################################
+
 @app.route('/admin/manage_staff', methods=['GET'])
 def manage_staff():
-    staff_list = fetch_staff()
-    return render_template('manage_staff.html')
+    staff_list = functionalites.fetch_staff()
+    return render_template('manage_staff.html',staff_list=staff_list)
 
 @app.route('/admin/create_staff', methods=['GET', 'POST'])
 def create_staff():
     if request.method == 'POST':
-        stadium_id = request.form['stadium_id']
+        staff_id = request.form['staff_id']
         type_ = request.form['type_']
         staff_start_time = request.form['staff_start_time']
         staff_end_time = request.form['staff_end_time']
@@ -98,7 +97,6 @@ def remove_staff(staff_id):
     return redirect('/admin/manage_staff')
     return render_template('manage_staff.html')
 
-############################################################################# 
 
 
     

@@ -4,7 +4,7 @@ import  database_functions as df
 connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="lmao#711",
+password="1234",
 database="stadium_database"
 )
 def fetch_events():
@@ -24,16 +24,29 @@ def fetch_events():
         return events
     except:
         print("error while fetching event")
+def fetch_staff():
+    try:
+        cursor = connection.cursor(dictionary=True)  # Use dictionary cursor to fetch results as dictionaries
+        query = "SELECT * FROM staff"
+        cursor.execute(query)
+        staff_list = cursor.fetchall()
+        return staff_list
+    except Error as e:
+        print(f"Error: {e}")
+        return None
+
 def fetch_vendors():
     try:
         cursor = connection.cursor(dictionary=True)  # Use dictionary cursor to fetch results as dictionaries
         query = "SELECT * FROM Vendor"
         cursor.execute(query)
         vendors = cursor.fetchall()
+      
         return vendors
     except Error as e:
         print(f"Error: {e}")
         return None
+
 
 def create_event(event_name, no_of_seats, event_type, stadium_id, event_date, start_time, end_time):
     try:
@@ -111,7 +124,6 @@ def book(seats,event_id,stand_name,payment_mode,price):
         
 
         
-
 
 
 

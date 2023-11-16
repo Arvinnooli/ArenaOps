@@ -1,0 +1,18 @@
+body {
+    background-color: #212529;
+    color: #fff;
+}
+
+.event-container {
+    background-color: #343a40;
+}
+
+.event-box {
+    background-color: #495057;
+    border: 1px solid #566371;
+    padding: 10px;
+}
+
+a {
+    color: #fff;
+}

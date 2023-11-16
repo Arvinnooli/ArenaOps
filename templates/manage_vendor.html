@@ -1,33 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Vendor - Stadium Management System</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
+{% block head %}
+<title>Stadium Management System-Events</title>
+{% endblock %}
+
+{% block body %}
 <body>
 
     <h1>Manage Vendor</h1>
 
     <div class="container">
-        <div class="button-container">
-            <div class="button-box">
-                <a href="/admin/create_vendor">Add Vendor</a>
-            </div>
-            <div class="button-box">
-                {% for vendor in vendors %}
-                <div class="event-box">
-                    {{ vendor[1] }}
-                </div>
-                <div class="button-box">
-                    <a href="/admin/delete_vendor/{{vendor}}">Remove Vendor</a>
-                </div>
-            {% endfor %}
-                <a href="">Remove Vendor</a>
-            </div>
-        </div>
+        <table>
+            <thead>
+              <tr>
+                <th>Vendor ID</th>
+                <th>Stand_name</th>
+                <th>Vendor_name</th>
+                <th>category</th>
+                <th>stadium_id</th>
+              </tr>
+            </thead>
+            <tbody>
+            {%for vendor in vendors%}
+              <tr>
+                <td>{{vendor['Vendor_id']}}</td>
+                <td>{{vendor['stand_name']}}</td>
+                <td>{{vendor['Vendor_name']}}</td>
+                <td>{{vendor['category']}}</td>
+                <td>{{vendor['stadium_id']}}</td>
+              </tr>
+            {%endfor%}
+              
+            </tbody>
+          </table>
     </div>
-
-</body>
-</html>
+    {% endblock %}
