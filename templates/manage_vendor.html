@@ -26,8 +26,10 @@
                 <td>{{vendor['Vendor_name']}}</td>
                 <td>{{vendor['category']}}</td>
                 <td>{{vendor['stadium_id']}}</td>
+                <td><button><a href="/admin/delete_vendor/{{vendor['Vendor_id']}}">Remove</a></button></td>
               </tr>
             {%endfor%}
+            <button><a href="/admin/create_vendor">Add vendor</a></button>
               
             </tbody>
           </table>

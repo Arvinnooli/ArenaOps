@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for,session
 import database_functions as df
 import functionalites
 
@@ -9,12 +9,7 @@ def home():
     return render_template('home.html')
 
 
-# Route for the events page
-@app.route('/events')
-def events():
-    events=functionalites.fetch_events()
-    print(events)
-    return render_template('events.html',events=events)
+
 
 @app.route('/admin')
 def admin():
@@ -77,53 +72,65 @@ def manage_staff():
     staff_list = functionalites.fetch_staff()
     return render_template('manage_staff.html',staff_list=staff_list)
 
-@app.route('/admin/create_staff', methods=['GET', 'POST'])
+@app.route('/admin/add_staff', methods=['GET', 'POST'])
 def create_staff():
     if request.method == 'POST':
-        staff_id = request.form['staff_id']
+        
+        staff_name=request.form['staff_name']
         type_ = request.form['type_']
         staff_start_time = request.form['staff_start_time']
         staff_end_time = request.form['staff_end_time']
         
-        add_staff(staff_name, staff_id, staff_start_time, staff_end_time)
+        df.insert_staff(staff_name, staff_start_time, staff_end_time)
         return redirect('/admin/manage_staff')
 
-    return render_template('manage_staff.html')
+    return render_template('add_staff.html')
 
 
-@app.route('/admin/delete_staff/<staff_id>')
-def remove_staff(staff_id):
-    delete_staff(staff_id)
+@app.route('/admin/delete_staff/<int:id>')
+def remove_staff(id):
+    df.delete_staff(id)
     return redirect('/admin/manage_staff')
-    return render_template('manage_staff.html')
+    
 
 
 
     
 
-    
+
+@app.route('/events')
+def events():
+    events=functionalites.fetch_events()
+   
+    return render_template('events.html',events=events)   
 
 
 
-@app.route('/book/<int:id>',methods=['POST','GET'])
-def book(id):
+@app.route('/booking_page/<int:id>',methods=['POST','GET'])
+def booking_page(id):
     if request.method=='POST':
         seats=request.form['selected_seats']
+        print(seats)
+        print(type(seats))
         standname=request.form['standname']
         price=functionalites.get_price(standname)
         total_price=len(seats)*price
         
-        
-        return redirect('/payment',)
+        session['seats'] = seats
+        session['standname'] = standname
+        session['total_price'] = total_price
+        return redirect('/payment/')
 
 
     
     else:
         no_of_seats=functionalites.no_of_available_seats(id)
-        seats=functionalites.show_available_seats(id)
-        prices=functionalites.show_stand_price(id)
-
-        return render_template('bookingpage.html',id=id,no_of_seats=no_of_seats,seats=seats,stand_prices=prices)
+        # seats=functionalites.show_available_seats(id)
+        # prices=functionalites.show_stand_prices(id)
+        print(no_of_seats)
+        # print(seats)
+        # print(prices)
+        return render_template('bookingpage_ashlin.html',id=id)
 
 
     
@@ -131,8 +138,10 @@ def book(id):
 
 @app.route('/payment')
 def payment():
-
-    return render_template('payment.html',)
+    seats = session.get('seats')
+    standname = session.get('standname')
+    total_price = session.get('total_price')
+    return render_template('payment.html',seats=seats)
 
 # @app.route('/payment')
 # def book(seats,event_id,stand_name,payment_mode,price):

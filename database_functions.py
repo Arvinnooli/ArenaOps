@@ -144,15 +144,15 @@ def insert_vendor(stand_name, vendor_name, category, stadium_id):
         print("Vendor information inserted successfully")
     except Error as e:
         print(f"Error: {e}")
-def insert_staff(staff_start_time, staff_end_time, type_, stadium_id):
+def insert_staff(staff_name,staff_start_time, staff_end_time, type_, stadium_id):
     """Insert staff information into the staff table."""
     try:
         cursor = connection.cursor()
         query = """
-        INSERT INTO staff (staff_start_time, staff_end_time, type_, stadium_id)
-        VALUES (%s, %s, %s, %s)
+        INSERT INTO staff (staff_name,staff_start_time, staff_end_time, type_, stadium_id)
+        VALUES (%s,%s, %s, %s, %s)
         """
-        data = (staff_start_time, staff_end_time, type_, stadium_id)
+        data = (staff_name,staff_start_time, staff_end_time, type_, stadium_id)
         cursor.execute(query, data)
         connection.commit()
         print("Staff information inserted successfully")
@@ -201,6 +201,25 @@ def delete_vendor(vendor_id):
         cursor.execute(query, data)
         connection.commit()
         print("Vendor deleted successfully")
+        return 
     except Error as e:
         print(f"Error: {e}")
+        return
+    
+def delete_staff(staff_id):
+    try:
+        cursor = connection.cursor()
+        query = "DELETE FROM staff WHERE staff_id = %s"
+        data = (staff_id,)
+        cursor.execute(query, data)
+        connection.commit()
+        print("Staff deleted successfully")
+        return 
+    except Error as e:
+        print(f"Error: {e}")
+        return
+
+    
+
+
 

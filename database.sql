@@ -71,11 +71,13 @@ create table Vendor(
 
 create table staff(
 	staff_id int auto_increment primary key,
+    staff_name varchar(10),
 	staff_start_time time,
     staff_end_time time,
     type_ enum('hospitality','ticketing','security','cleaning'),
     stadium_id int
     );
+drop table staff;
 
 create table stadium(
 	stadium_id int  primary key,

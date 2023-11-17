@@ -27,6 +27,8 @@ END //
 
 DELIMITER ;
 
+CALL GetAvailableSeatsForEvent(1);
+
 
 DELIMITER //
 

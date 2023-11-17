@@ -30,6 +30,7 @@ def fetch_staff():
         query = "SELECT * FROM staff"
         cursor.execute(query)
         staff_list = cursor.fetchall()
+        print(staff_list)
         return staff_list
     except Error as e:
         print(f"Error: {e}")
@@ -74,13 +75,18 @@ def create_event(event_name, no_of_seats, event_type, stadium_id, event_date, st
         print(f"Error: {err}")
         return None
 def no_of_available_seats(event_id):
-    cursor=connection.cursor()
-    cursor.callproc("GetAvailableSeatsForEvent",(event_id,))
-    no_of_seats=cursor.fetchone()
-    return no_of_seats
+    try:
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute("CALL GetAvailableSeatsForEvent(%s)",(event_id,))
+        result = cursor.fetchall()
+        return result[0]['availableSeats']
+    except Exception as e:
+        print(f"Error: {e}")
+    finally:
+        cursor.close()
 
 def show_stand_prices(event_id):
-    cursor=connection.cursor()
+    cursor=connection.cursor(dictionary=True)
     cursor.execute('''SELECT
     
     stand_name,
@@ -96,7 +102,7 @@ where event_id=%s''',(event_id,) )
     return stand_prices
 
 def show_available_seats(event_id):
-    cursor=connection.cursor()
+    cursor=connection.cursor(dictionary=True)
     cursor.execute('''SELECT s.Seat_no, s.stand_name
 FROM Seats s
 JOIN Ticket t ON s.ticket_id = t.ticket_id
@@ -109,7 +115,7 @@ def get_price(standname):
     cursor=connection.cursor()
     cursor.execute('''select stand_price 
                    from stands
-                   where standname=%s''')
+                   where standname=%s''',(standname,))
     price=cursor.fetchone()
     return price
     
@@ -123,7 +129,7 @@ def book(seats,event_id,stand_name,payment_mode,price):
     return None
         
 
-        
+    
 
 
 

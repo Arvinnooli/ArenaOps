@@ -6,23 +6,40 @@
 {% block body %}
 
     <h1>Manage Staff</h1>
-
+    <button><a href="/admin/add_staff">Add Staff</a></button>
     <div class="container">
-        <div class="button-container">
-            <div class="button-box">
-                <a href="/admin/create_staff">Add Staff</a>
-            </div>
-            {% for event in events %}
-            <div class="event-box">
-                {{ event[1] }}
-            </div>
-            <div class="button-box">
-                <a href="/admin/delete_staff/{{staff}}">Remove Event</a>
-            </div>
-        {% endfor %}
+        <table>
+            <thead>
+              <tr>
+                
+                <th>Staff_name</th>
+                <th>Start_Time</th>
+                <th>End_Time</th>
+                <th>Type</th>
+                
+              </tr>
+            </thead>
             
-        </div>
+            <tbody>
+                
+            {%for staff in staff_list%}
+              <tr>
+                <td>{{staff['staff_name']}}</td>
+                <td>{{staff['staff_start_time']}}</td>
+                <td>{{staff['staff_end_time']}}</td>
+                <td>{{staff['type_ enum']}}</td>
+
+                
+                <td><button><a href="/admin/delete_staff/{{staff['staff_id']}}">Remove</a></button></td>
+              </tr>
+            {%endfor%}
+           
+              
+            </tbody>
+          </table>
+          
     </div>
+   
 
 {% endblock %}
 
