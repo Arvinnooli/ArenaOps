@@ -1,6 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
 import  database_functions as df
+
 connection = mysql.connector.connect(
 host="localhost",
 user="root",
@@ -165,7 +166,7 @@ database="stadium_database"
     print(price)
     return price[0]
     
-def book(seats_dict,event_id,stand_name,payment_mode,total_price):
+def book(seats_dict,event_id,payment_mode,total_price):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
@@ -174,7 +175,7 @@ database="stadium_database"
 )
 
     cursor=connection.cursor()
-    total_price = 0
+   
 
     
     ticket_id = df.insert_ticket(payment_mode, total_price, event_id)

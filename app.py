@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for,session
 import database_functions as df
 import functionalites
+import json
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
@@ -147,16 +148,16 @@ def booking_page(id):
 # Flask route for handling payment confirmation
 @app.route('/ticket/<int:event_id>', methods=['POST'])
 def ticket(event_id):
-    seats_dict = request.form.get('seats_dict')
+    seats_dict_str = request.form.get('seats_dict')
     total_price = request.form.get('total_price')
     payment_mode=request.form.get('payment_mode')
+    
+    seats_dict = json.loads(seats_dict_str.replace("'", "\""))
+   
+   
 
-    print(seats_dict)
-    # Convert seats_dict from string to dictionary (use a safe method for this)
-    # ...
-
-    # booked_ticket_id = functionalites.book(seats_dict, event_id, payment_mode)
-    return "hi"
+    booked_ticket_id = functionalites.book(seats_dict, event_id, payment_mode,total_price)
+   
 
     return render_template('ticket.html', booked_ticket_id=booked_ticket_id, seats_dict=seats_dict, total_price=total_price)
 
