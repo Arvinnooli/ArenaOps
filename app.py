@@ -156,7 +156,7 @@ def ticket(event_id):
    
    
 
-    booked_ticket_id = functionalites.book(seats_dict, event_id, payment_mode,total_price)
+    booked_ticket_id = functionalites.book(seats_dict,event_id,payment_mode,total_price)
    
 
     return render_template('ticket.html', booked_ticket_id=booked_ticket_id, seats_dict=seats_dict, total_price=total_price)
