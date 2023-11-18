@@ -16,11 +16,13 @@ create table Customer(
     
 
 create table Ticket(
-	ticket_id int primary key,
+	ticket_id int auto_increment primary key,
 	mode_of_payment enum('upi','cash','card') not null,
     price int not null,
     event_id int not null
     );
+
+
 
 create table Parking(
 	location varchar(7) primary key,
@@ -92,6 +94,7 @@ FOREIGN KEY (ticket_id)
 REFERENCES Ticket(ticket_id)
 on update cascade;
 
+
 -- Add foreign key constraint for location
 ALTER TABLE Customer
 ADD CONSTRAINT fk_location_customer
@@ -124,7 +127,6 @@ ALTER TABLE Seats
 ADD CONSTRAINT fk_ticket_seats
 FOREIGN KEY (ticket_id)
 REFERENCES Ticket(ticket_id);
-
 -- Add foreign key constraint for stadium_id in Stands table
 ALTER TABLE Stands
 ADD CONSTRAINT fk_stadium_stands

@@ -19,6 +19,33 @@ BEGIN
 END;
 //
 DELIMITER ;
+DELIMITER //
+
+CREATE TRIGGER CheckTimeSlotOverlap
+BEFORE INSERT ON Timing
+FOR EACH ROW
+BEGIN
+    DECLARE existing_start_time TIME;
+    DECLARE existing_end_time TIME;
+
+    -- Check for overlapping time slots
+    SELECT start_time, end_time
+    INTO existing_start_time, existing_end_time
+    FROM Timing
+    WHERE NEW.date_ = date_
+    AND (NEW.start_time BETWEEN start_time AND end_time
+         OR NEW.end_time BETWEEN start_time AND end_time
+         OR (NEW.start_time <= start_time AND NEW.end_time >= end_time));
+
+    IF existing_start_time IS NOT NULL AND existing_end_time IS NOT NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'New time slot overlaps with an existing time slot';
+    END IF;
+END //
+
+DELIMITER ;
+
+
 
 
 

@@ -7,15 +7,15 @@ password="1234",
 database="stadium_database"
 )
 
-def insert_customer(first_name, last_name, gender, age, contact_no, ticket_id, location, user_password):
+def insert_customer(first_name, last_name, gender, age, contact_no, ticket_id, location):
   
     try:
         cursor = connection.cursor()
         query = """
-        INSERT INTO Customer (first_name, last_name, gender, age, contact_no, ticket_id, location, Userpassword)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO Customer (first_name, last_name, gender, age, contact_no, ticket_id)
+        VALUES (%s, %s, %s, %s, %s, %s)
         """
-        data = (first_name, last_name, gender, age, contact_no, ticket_id, location, user_password)
+        data = (first_name, last_name, gender, age, contact_no, ticket_id)
         cursor.execute(query, data)
         connection.commit()
         print("Customer inserted successfully")

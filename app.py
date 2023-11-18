@@ -151,16 +151,22 @@ def ticket(event_id):
     seats_dict_str = request.form.get('seats_dict')
     total_price = request.form.get('total_price')
     payment_mode=request.form.get('payment_mode')
+    first_name =request.form.get('first_name')
+    last_name=request.form.get('last_name') 
+    gender=request.form.get('gender')
+    age=request.form.get('age')
+    contact_no=request.form.get('contact_no')
+   
+    
     
     seats_dict = json.loads(seats_dict_str.replace("'", "\""))
    
    
 
     booked_ticket_id = functionalites.book(seats_dict,event_id,payment_mode,total_price)
-   
+    df.insert_customer(first_name, last_name, gender, age, contact_no, booked_ticket_id)
 
     return render_template('ticket.html', booked_ticket_id=booked_ticket_id, seats_dict=seats_dict, total_price=total_price)
-
 
 
 if __name__ == '__main__':

@@ -23,6 +23,23 @@
     <option value="cash">Cash</option>
     <option value="card">Card</option>
   </select>
+  <label for="first_name">First Name:</label>
+    <input type="text" id="first_name" name="first_name" required><br>
+
+    <label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" name="last_name" required><br>
+
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender" required>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+    </select><br>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required><br>
+
+    <label for="contact_no">Contact Number:</label>
+    <input type="tel" id="contact_no" name="contact_no" required><br>
         <button type="submit">Confirm Booking</button>
     </form>
 {% endblock %}
