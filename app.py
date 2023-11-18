@@ -125,12 +125,12 @@ def booking_page(id):
     
     else:
         no_of_seats=functionalites.no_of_available_seats(id)
-        # seats=functionalites.show_available_seats(id)
-        # prices=functionalites.show_stand_prices(id)
-        print(no_of_seats)
-        # print(seats)
-        # print(prices)
-        return render_template('bookingpage_ashlin.html',id=id)
+        seats=functionalites.show_available_seats(id)
+        prices=functionalites.show_stand_prices(id)
+        print(prices)
+        
+        standnames=functionalites.get_stand_names(id)
+        return render_template('bookingpage.html',id=id,seats=seats,standnames=standnames,prices=prices)
 
 
     
@@ -141,11 +141,9 @@ def payment():
     seats = session.get('seats')
     standname = session.get('standname')
     total_price = session.get('total_price')
-    return render_template('payment.html',seats=seats)
+    return render_template('payment.html',seats=seats,standname=standname,total_price=total_price)
 
-# @app.route('/payment')
-# def book(seats,event_id,stand_name,payment_mode,price):
-#     functionalites.book()
+
 
 # Route for the ticket confirmation page
 @app.route('/ticket')

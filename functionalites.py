@@ -82,10 +82,15 @@ def no_of_available_seats(event_id):
         return result[0]['availableSeats']
     except Exception as e:
         print(f"Error: {e}")
-    finally:
-        cursor.close()
+   
 
 def show_stand_prices(event_id):
+    connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
     cursor=connection.cursor(dictionary=True)
     cursor.execute('''SELECT
     
@@ -99,18 +104,52 @@ NATURAL JOIN
     Stands
 where event_id=%s''',(event_id,) )
     stand_prices=cursor.fetchall()
-    return stand_prices
+   
+    stand_with_price={}
+    for dict in stand_prices:
+        print(dict['stand_name'])
+        stand_with_price[dict['stand_name']]=dict['stand_price']
+   
+    return stand_with_price
 
 def show_available_seats(event_id):
-    cursor=connection.cursor(dictionary=True)
-    cursor.execute('''SELECT s.Seat_no, s.stand_name
-FROM Seats s
-JOIN Ticket t ON s.ticket_id = t.ticket_id
-WHERE s.ticket_id IS NULL
-AND t.event_id = %s;
-''',(event_id))
-    available_seats=cursor.fetchall()
-    return available_seats
+    try:
+        connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
+       
+        cursor = connection.cursor(dictionary=True)
+        available_seats={}
+        cursor.execute("""SELECT stand_name
+FROM Event_ e
+JOIN Stands s ON e.stadium_id = s.stadium_id
+WHERE e.event_id = %s;
+""",(event_id,))
+        stand_names=cursor.fetchall()
+       
+        for stand_name in stand_names:
+
+
+
+        
+        
+            cursor.execute("""
+                    SELECT stand_name,seat_no
+    FROM Event_ e
+    NATURAL JOIN stadium st
+    NATURAL JOIN Stands stn
+    NATURAL JOIN Seats s
+    where e.event_id=%s  and stn.stand_name=%s and ticket_id is null
+                """,(event_id,stand_name['stand_name']))
+            
+            available_seats[stand_name['stand_name']]=cursor.fetchall()
+        
+        return available_seats
+    except mysql.connector.Error as e:
+        print(f"MySQL Error: {e}")
 def get_price(standname):
     cursor=connection.cursor()
     cursor.execute('''select stand_price 
@@ -123,15 +162,29 @@ def book(seats,event_id,stand_name,payment_mode,price):
     cursor=connection.cursor()
     df.insert_ticket(payment_mode,price,event_id)
     ticket_id=df.get_last_inserted_id()
+
     
     for seat_no in seats:
         df.update_seat(seat_no,stand_name,ticket_id)
     return None
         
-
-    
-
-
-
+def get_stand_names(id):
+    connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute("""SELECT stand_name
+FROM Event_ e
+JOIN Stands s ON e.stadium_id = s.stadium_id
+WHERE e.event_id = %s;
+""",(id,))
+    stand_names=cursor.fetchall()
+    return stand_names
+   
+# seats=show_available_seats(1)
+# print(seats)
 
 

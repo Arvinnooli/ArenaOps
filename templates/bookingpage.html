@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Stadium Management System-Events</title>
+{% endblock %}
+{% block body %}
+<h2>Book seats</h2>
+
+{% for standname in standnames %}
+<table>
+    <h3>{{ standname['stand_name'] }}</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Seat Number</th>
+                <th>Price</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for seat in seats[standname['stand_name']] %}
+                <tr>
+                    <td>{{ seat['seat_no'] }}</td>
+                    <td>{{ prices[standname['stand_name']] }}</td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="selected_seats" value="{{ standname['stand_name'] }}_{{ seat['seat_no'] }}">
+                        </label>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% endfor %}
+
+<form method="POST" action="{{ url_for('booking_page', id=id) }}">
+    <button type="submit">Book Selected Seats</button>
+</form>
+{% endblock %}
+
+
+

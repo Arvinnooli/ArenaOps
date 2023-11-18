@@ -1,4 +1,3 @@
-@app.route('/admin/manage_staff', methods=['GET'])
-# def manage_staff():
-#     staff_list = fetch_staff()
-#     return render_template('manage_staff.html')
+for dict in stand_prices:
+        print(dict['stand_name'])
+        stand_with_price[dict['stand_name']]=dict['stand_price']
