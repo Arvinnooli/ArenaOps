@@ -70,7 +70,8 @@ def delete_vendor(id):
 @app.route('/admin/manage_staff', methods=['GET'])
 def manage_staff():
     staff_list = functionalites.fetch_staff()
-    return render_template('manage_staff.html',staff_list=staff_list)
+    counts=functionalites.count_of_staff_by_category(1)
+    return render_template('manage_staff.html',staff_list=staff_list,counts=counts)
 
 @app.route('/admin/add_staff', methods=['GET', 'POST'])
 def create_staff():
@@ -109,17 +110,23 @@ def events():
 @app.route('/booking_page/<int:id>',methods=['POST','GET'])
 def booking_page(id):
     if request.method=='POST':
-        seats=request.form['selected_seats']
-        print(seats)
-        print(type(seats))
-        standname=request.form['standname']
-        price=functionalites.get_price(standname)
-        total_price=len(seats)*price
+        selected_seats = request.form.getlist('selected_seats')
+        seats_dict = {}
+    
+        for seat_value in selected_seats:
+            stand_name, seat_no = seat_value.split('_')
+            if stand_name not in seats_dict:
+                seats_dict[stand_name] = []
+            seats_dict[stand_name].append(seat_no)
+        print(seats_dict)
+        total_price=0
+        for stand_name, seat_numbers in seats_dict.items():
+            total_price += len(seat_numbers) * functionalites.get_price(stand_name)
+      
+       
+        print(total_price)
         
-        session['seats'] = seats
-        session['standname'] = standname
-        session['total_price'] = total_price
-        return redirect('/payment/')
+        return render_template('payment.html', event_id=id,seats_dict=seats_dict,total_price=total_price)
 
 
     
@@ -136,19 +143,23 @@ def booking_page(id):
     
 
 
-@app.route('/payment')
-def payment():
-    seats = session.get('seats')
-    standname = session.get('standname')
-    total_price = session.get('total_price')
-    return render_template('payment.html',seats=seats,standname=standname,total_price=total_price)
 
+# Flask route for handling payment confirmation
+@app.route('/ticket/<int:event_id>', methods=['POST'])
+def ticket(event_id):
+    seats_dict = request.form.get('seats_dict')
+    total_price = request.form.get('total_price')
+    payment_mode=request.form.get('payment_mode')
 
+    print(seats_dict)
+    # Convert seats_dict from string to dictionary (use a safe method for this)
+    # ...
 
-# Route for the ticket confirmation page
-@app.route('/ticket')
-def ticket():
-    return render_template('ticket.html')
+    # booked_ticket_id = functionalites.book(seats_dict, event_id, payment_mode)
+    return "hi"
+
+    return render_template('ticket.html', booked_ticket_id=booked_ticket_id, seats_dict=seats_dict, total_price=total_price)
+
 
 
 if __name__ == '__main__':

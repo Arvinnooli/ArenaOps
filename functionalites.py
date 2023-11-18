@@ -151,22 +151,48 @@ WHERE e.event_id = %s;
     except mysql.connector.Error as e:
         print(f"MySQL Error: {e}")
 def get_price(standname):
+    connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
     cursor=connection.cursor()
     cursor.execute('''select stand_price 
                    from stands
-                   where standname=%s''',(standname,))
+                   where stand_name=%s''',(standname,))
     price=cursor.fetchone()
-    return price
+    print(price)
+    return price[0]
     
-def book(seats,event_id,stand_name,payment_mode,price):
+def book(seats_dict,event_id,stand_name,payment_mode,total_price):
+    connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
+
     cursor=connection.cursor()
-    df.insert_ticket(payment_mode,price,event_id)
-    ticket_id=df.get_last_inserted_id()
+    total_price = 0
 
     
-    for seat_no in seats:
-        df.update_seat(seat_no,stand_name,ticket_id)
-    return None
+    ticket_id = df.insert_ticket(payment_mode, total_price, event_id)
+
+    # Update each seat in the dictionary
+    for stand_name, seat_numbers in seats_dict.items():
+        
+        
+        # Update each seat in the current stand
+        for seat_no in seat_numbers:
+            df.update_seat(seat_no, stand_name, ticket_id)
+
+    print("Booking successful")
+    return ticket_id
+    
+
+    
+
         
 def get_stand_names(id):
     connection = mysql.connector.connect(
@@ -186,5 +212,40 @@ WHERE e.event_id = %s;
    
 # seats=show_available_seats(1)
 # print(seats)
+#nested query
+def show_events_in_city(city):
+    connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
+       
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute("""SELECT *
+FROM Event_
+WHERE stadium_id IN (SELECT stadium_id FROM stadium WHERE stadium_location = %s)""",(city,))
+    events=cursor.fetchall()
+    return events
+    
+def count_of_staff_by_category(id):
+    connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
+       
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute("""SELECT  st.type_, COUNT(*) AS staff_count
+FROM staff st
+where st.stadium_id=%s
+GROUP BY st.type_;
+)""",(id,))
+    counts=cursor.fetchall()
+    return counts
+
+
+
 
 

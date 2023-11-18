@@ -1,13 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Allocated Ticket - Stadium Management System</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body style="background-color: #8ab6d6;">
 
-<h2>Allocated Ticket</h2>
-<!-- Display ticket details: Ticket ID, Event Name, Date, Stand, Name -->
+{% extends 'base.html' %}
+{% block head %}
+<title>Ticket Confirmation</title>
+{% endblock %}
+{% block body %}
+<h2>Ticket Confirmation</h2>
 
-</body>
-</html>
+<p>Your ticket has been generated successfully!</p>
+<p>Booking Details:</p>
+<ul>
+  <li>Event ID: {{ event_id }}</li>
+  <li>Booked Ticket ID: {{ booked_ticket_id }}</li>
+  <li>Total Price: {{ total_price }}</li>
+  <li>Selected Seats:</li>
+  <ul>
+    {% for stand_name, seat_numbers in seats_dict.items() %}
+      <li>{{ stand_name }}: {{ seat_numbers | join(', ') }}</li>
+    {% endfor %}
+  </ul>
+</ul>
+
+{% endblock %}

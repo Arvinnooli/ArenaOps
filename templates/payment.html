@@ -1,15 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Payment - Stadium Management System</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body style="background-color: #8ab6d6;">
-
-<h2>Payment Details</h2>
-
-
-<input type="button" value="Done" onclick="location.href='ticket.html'">
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% block head %}
+    <title>Booking Details</title>
+{% endblock %}
+{% block body %}
+    <h2>Booking Details</h2>
+    
+    <h3>Selected Seats:</h3>
+    <ul>
+        {% for stand_name, seat_numbers in seats_dict.items() %}
+            <li>{{ stand_name }}: {{ seat_numbers|join(', ') }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h3>Total Price: Rs{{ total_price }}</h3>
+    
+    <form method="POST" action="{{ url_for('ticket', event_id=event_id) }}">
+        <input type="hidden" name="seats_dict" value="{{ seats_dict }}">
+        <input type="hidden" name="total_price" value="{{ total_price }}">
+        <label for="payment_mode">Select Payment Mode:</label>
+  <select name="payment_mode" id="payment_mode" required>
+    <option value="upi">UPI</option>
+    <option value="cash">Cash</option>
+    <option value="card">Card</option>
+  </select>
+        <button type="submit">Confirm Booking</button>
+    </form>
+{% endblock %}

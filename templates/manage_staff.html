@@ -27,18 +27,43 @@
                 <td>{{staff['staff_name']}}</td>
                 <td>{{staff['staff_start_time']}}</td>
                 <td>{{staff['staff_end_time']}}</td>
-                <td>{{staff['type_ enum']}}</td>
+                <td>{{staff['type_']}}</td>
 
                 
                 <td><button><a href="/admin/delete_staff/{{staff['staff_id']}}">Remove</a></button></td>
               </tr>
             {%endfor%}
-           
+        
+        
               
             </tbody>
           </table>
+        </div>
+        
+          <table>
+            <thead>
+                <tr>
+                  
+                  <th>Staff_type</th>
+                  
+                  <th>Staff_count</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                
+                {%for count in counts%}
+                <tr>
+                    <td>{{count['type_']}}</td>
+                    <td>{{count['staff_count']}}</td>
+                 </tr>
+                {%endfor%}
+               
+                  
+                </tbody>
+        </table>
           
-    </div>
+   
    
 
 {% endblock %}
