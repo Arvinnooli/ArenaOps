@@ -27,7 +27,7 @@ END //
 
 DELIMITER ;
 
-CALL GetAvailableSeatsForEvent(1);
+CALL GetAvailableSeatsForEvent(2);
 
 
 DELIMITER //
@@ -60,6 +60,9 @@ DELIMITER ;
 
 
 
+
+
+CALL CreateEventWithTimeSlot('concert2', 1000, 'concert', 1, '2023-12-01', '18:00:00', '22:00:00');
 
 
 

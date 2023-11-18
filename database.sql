@@ -41,11 +41,14 @@ create table Timing(
 
 create table Seats(
 
-	Seat_no int ,
+	Seat_no int,
 	ticket_id int,
     stand_name varchar(20),
+    event_id int,
     PRIMARY KEY (Seat_no, stand_name)
     );
+
+
 
 
 
@@ -60,9 +63,13 @@ create table Event_(
 
 create table Stands(
 	stand_name varchar(20) primary key,
+    
     stand_price int not null,
     stadium_id int
 );
+ALTER TABLE Stands
+ADD COLUMN stand_capacity INT;
+
 create table Vendor(
 	Vendor_id int auto_increment primary key,
     stand_name varchar(20),
@@ -127,6 +134,10 @@ ALTER TABLE Seats
 ADD CONSTRAINT fk_ticket_seats
 FOREIGN KEY (ticket_id)
 REFERENCES Ticket(ticket_id);
+ALTER TABLE Seats
+ADD CONSTRAINT fk_event_seats
+FOREIGN KEY (event_id)
+REFERENCES Event_(event_id);
 -- Add foreign key constraint for stadium_id in Stands table
 ALTER TABLE Stands
 ADD CONSTRAINT fk_stadium_stands

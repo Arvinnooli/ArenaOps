@@ -25,11 +25,11 @@ def fetch_events():
         return events
     except:
         print("error while fetching event")
-def fetch_staff():
+def fetch_staff(id):
     try:
         cursor = connection.cursor(dictionary=True)  # Use dictionary cursor to fetch results as dictionaries
-        query = "SELECT * FROM staff"
-        cursor.execute(query)
+        query = "SELECT * FROM staff where stadium_id=%s"
+        cursor.execute(query,(id,))
         staff_list = cursor.fetchall()
         print(staff_list)
         return staff_list
@@ -37,11 +37,11 @@ def fetch_staff():
         print(f"Error: {e}")
         return None
 
-def fetch_vendors():
+def fetch_vendors(id):
     try:
         cursor = connection.cursor(dictionary=True)  # Use dictionary cursor to fetch results as dictionaries
-        query = "SELECT * FROM Vendor"
-        cursor.execute(query)
+        query = "SELECT * FROM Vendor where stadium_id=%s"
+        cursor.execute(query,(id,))
         vendors = cursor.fetchall()
       
         return vendors
@@ -140,10 +140,8 @@ WHERE e.event_id = %s;
             cursor.execute("""
                     SELECT stand_name,seat_no
     FROM Event_ e
-    NATURAL JOIN stadium st
-    NATURAL JOIN Stands stn
     NATURAL JOIN Seats s
-    where e.event_id=%s  and stn.stand_name=%s and ticket_id is null
+    where e.event_id=%s  and s.stand_name=%s and ticket_id is null
                 """,(event_id,stand_name['stand_name']))
             
             available_seats[stand_name['stand_name']]=cursor.fetchall()
@@ -186,7 +184,7 @@ database="stadium_database"
         
         # Update each seat in the current stand
         for seat_no in seat_numbers:
-            df.update_seat(seat_no, stand_name, ticket_id)
+            df.update_seat(seat_no, stand_name, ticket_id,event_id)
 
     print("Booking successful")
     return ticket_id

@@ -86,15 +86,15 @@ def insert_timing(date_, start_time, end_time):
     except Error as e:
         print(f"Error: {e}")
 
-def insert_seats(seat_no,ticket_id, stand_name):
+def insert_seats(seat_no,stand_name,event_id):
 
     try:
         cursor = connection.cursor()
         query = """
-        INSERT INTO Seats (Seat_no, ticket_id, stand_name)
+        INSERT INTO Seats (Seat_no,stand_name,event_id)
         VALUES (%s, %s, %s)
         """
-        data = (seat_no,ticket_id, stand_name)
+        data = (seat_no,stand_name)
         cursor.execute(query, data)
         connection.commit()
         print("Seat information inserted successfully")
@@ -169,15 +169,15 @@ def get_last_inserted_id():
     except:
         print("error while fetching last inserted id")
 
-def update_seat(seat_no,stand_name,ticket_id):
+def update_seat(seat_no,stand_name,event_id,ticket_id):
     try:
         cursor = connection.cursor()
         query = """
         UPDATE Seats
         SET ticket_id = %s
-        WHERE Seat_no = %s AND stand_name = %s
+        WHERE Seat_no = %s AND stand_name = %s and event_id=%s
         """
-        data = (ticket_id, seat_no, stand_name)
+        data = (ticket_id, seat_no, stand_name,event_id)
         cursor.execute(query, data)
         connection.commit()
         print("Seat updated successfully")
