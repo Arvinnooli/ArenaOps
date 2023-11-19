@@ -103,7 +103,6 @@ def remove_staff(id):
 @app.route('/events')
 def events():
     events=functionalites.fetch_events()
-   
     return render_template('events.html',events=events)   
 
 
@@ -123,8 +122,7 @@ def booking_page(id):
         total_price=0
         for stand_name, seat_numbers in seats_dict.items():
             total_price += len(seat_numbers) * functionalites.get_price(stand_name)
-      
-       
+
         print(total_price)
         
         return render_template('payment.html', event_id=id,seats_dict=seats_dict,total_price=total_price)
