@@ -10,7 +10,13 @@ database="stadium_database"
 )
 def fetch_events():
     try:
-        cursor = connection.cursor()
+        connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
+        cursor = connection.cursor(dictionary=True)
         cursor.execute('''SELECT
         e.event_id,
         e.event_name,
@@ -22,6 +28,7 @@ def fetch_events():
         Timing t ON e.time_slot_id = t.time_slot_id;
     ''')
         events=cursor.fetchall()
+        print(events)
         return events
     except:
         print("error while fetching event")
