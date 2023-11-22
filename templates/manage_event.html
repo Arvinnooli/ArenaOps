@@ -18,11 +18,11 @@
 
             {% for event in events %}
         <div class="event-box">
-            {{ event[1] }}
+            {{ event['event_name'] }}
         </div>
         <div class="button-box">
     
-            <a href="/admin/delete_event/{{event}}">Remove Event</a>
+            <a href="/admin/delete_event/{{event['event_id']}}">Remove Event</a>
         </div>
     {% endfor %}
             

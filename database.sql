@@ -63,12 +63,11 @@ create table Event_(
 
 create table Stands(
 	stand_name varchar(20) primary key,
-    
-    stand_price int not null,
+	stand_price int not null,
     stadium_id int
 );
-ALTER TABLE Stands
-ADD COLUMN stand_capacity INT;
+
+
 
 create table Vendor(
 	Vendor_id int auto_increment primary key,
@@ -76,7 +75,7 @@ create table Vendor(
     Vendor_name varchar(20),
     category enum('food','merch'),
     stadium_id int
-    );
+);
 
 create table staff(
 	staff_id int auto_increment primary key,
@@ -86,14 +85,15 @@ create table staff(
     type_ enum('hospitality','ticketing','security','cleaning'),
     stadium_id int
     );
-drop table staff;
+
 
 create table stadium(
 	stadium_id int  primary key,
     stadium_name varchar(20),
-    stadium_location varchar(20)
+    stadium_location varchar(20),
+    stadium_capacity int
     );
-    
+
 -- Add foreign key constraint for ticket_id
 ALTER TABLE Customer
 ADD CONSTRAINT fk_ticket_customer
@@ -165,6 +165,17 @@ FOREIGN KEY (stadium_id)
 REFERENCES stadium(stadium_id)
 ON UPDATE CASCADE;
 
+
+
+INSERT INTO Stands (stand_name, stand_price, stadium_id, stand_capacity)
+VALUES 
+    ('StandA', 50, 1, 100),
+    ('StandB', 40, 1, 80),
+	('StandC', 30, 1, 120),
+    ('StandD', 35, 1, 90);
+    
+
+    
 
 
 

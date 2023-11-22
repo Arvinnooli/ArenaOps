@@ -40,7 +40,7 @@ def manage_event():
 @app.route('/admin/delete_event/<int:id>')
 def delete_event(id):
     df.delete_event(id)
-    return render_template('manage_event.html')
+    return redirect('/admin/manage_event')
 
 @app.route('/admin/manage_vendor')
 def manage_vendor():
