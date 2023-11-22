@@ -22,28 +22,28 @@ import database_functions as df
 
 
 # Insert time slots
-time_slots_data = [
-    ('2023-11-15', '18:00:00', '20:00:00'),
-    ('2023-11-15', '20:30:00', '22:30:00'),
-    # Add more time slots as needed
-]
+# time_slots_data = [
+#     ('2023-11-15', '18:00:00', '20:00:00'),
+#     ('2023-11-15', '20:30:00', '22:30:00'),
+#     # Add more time slots as needed
+# ]
 
-for time_slot in time_slots_data:
-    df.insert_timing(*time_slot)
+# for time_slot in time_slots_data:
+#     df.insert_timing(*time_slot)
 
-print("Time slots inserted successfully.")
+# print("Time slots inserted successfully.")
 
-events_data = [
-    ('Concert2', 300, 'concert', 1, 3), 
-]
+# events_data = [
+#     ('Concert2', 300, 'concert', 1, 3), 
+# ]
 
-for event in events_data:
-    df.insert_event(*event)
+# for event in events_data:
+#     df.insert_event(*event)
 
-vendors_data = [
-    ('StandA', 'Vendor1', 'food', 1),
-    ('StandB', 'Vendor2', 'merch', 1),
-]
+# vendors_data = [
+#     ('StandA', 'Vendor1', 'food', 1),
+#     ('StandB', 'Vendor2', 'merch', 1),
+# ]
 
 
 # Insert Admin
