@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for,session
 import database_functions as df
 import functionalites
 import json
-
+import mysql.connector
+from mysql.connector import Error
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
 @app.route('/',methods=['GET'])
@@ -44,7 +45,7 @@ def delete_event(id):
 
 @app.route('/admin/manage_vendor')
 def manage_vendor():
-    vendors = functionalites.fetch_vendors()
+    vendors = functionalites.fetch_vendors(1)
     return render_template('manage_vendor.html', vendors=vendors)
 
 @app.route('/admin/create_vendor')
@@ -70,12 +71,12 @@ def delete_vendor(id):
 
 @app.route('/admin/manage_staff', methods=['GET'])
 def manage_staff():
-    staff_list = functionalites.fetch_staff()
+    staff_list = functionalites.fetch_staff(1)
     counts=functionalites.count_of_staff_by_category(1)
     return render_template('manage_staff.html',staff_list=staff_list,counts=counts)
 
-@app.route('/admin/add_staff', methods=['GET', 'POST'])
-def create_staff():
+@app.route('/admin/add_staff/<int:id>', methods=['GET', 'POST'])
+def create_staff(id):
     if request.method == 'POST':
         
         staff_name=request.form['staff_name']
@@ -169,8 +170,13 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        
-        cursor = db.cursor()
+        connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
+        cursor = connection.cursor()
         # Check if the provided credentials match an admin in the database
         cursor.execute("SELECT * FROM admin WHERE admin_username = %s AND admin_password = %s", (username, password))
         admin = cursor.fetchone()

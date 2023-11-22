@@ -139,13 +139,13 @@ h2 {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #f6f6f6;
+    border: 1px solid #897c7c;
     box-sizing: border-box;
 }
 
 .event-form button {
-    background-color: #4cdf54; /* Green button background */
-    color: rgb(176, 124, 124);
+    background-color: #373d37; /* Green button background */
+    color: rgb(255, 255, 255);
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
@@ -157,7 +157,7 @@ h2 {
 }
 
 .stand-box {
-    background-color: #423737; /* Light red background */
+    background-color: #f9f4f4; /* Light red background */
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 15px; /* Adjust as needed */

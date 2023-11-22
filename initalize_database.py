@@ -47,8 +47,8 @@ import database_functions as df
 
 
 # Insert Admin
-admin_data = ('ashlin', '1234')
-admin_data = ('arvin','lmao')
+admin_data = [('ashlin', '1234')
+('arvin','lmao')]
 df.insert_admin(*admin_data)
 
 

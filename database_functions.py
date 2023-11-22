@@ -222,5 +222,16 @@ def delete_staff(staff_id):
         return
 
     
-
+def insert_admin(data):
+    try:
+        cursor = connection.cursor()
+        query = "Insert into admin values(%s,%s)"
+        
+        cursor.execute(query, data)
+        connection.commit()
+        print("Admin added successfully")
+        return 
+    except Error as e:
+        print(f"Error: {e}")
+        return
 
