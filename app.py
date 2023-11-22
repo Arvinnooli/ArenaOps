@@ -186,6 +186,29 @@ def login():
     return render_template('login.html')
 
 
+@app.route('/')
+def index():
+    return render_template('parking.html')
+
+@app.route('/entry', methods=['GET', 'POST'])
+def entry():
+    if request.method == 'POST':
+        # Logic to handle parking entry form submission
+        customer_id = request.form['customer_id']
+        selected_slot = request.form['parking_slot']
+        # Process the parking entry
+        return f"Parking entry recorded for Customer ID: {customer_id} in Slot: {selected_slot}"
+    return render_template('entry_parking.html')
+
+@app.route('/exit', methods=['GET', 'POST'])
+def exit():
+    if request.method == 'POST':
+        # Logic to handle parking exit form submission
+        customer_id = request.form['customer_id']
+        # Process the parking exit
+        return f"Parking exit recorded for Customer ID: {customer_id}"
+    return render_template('exit_parking.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
