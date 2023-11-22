@@ -85,7 +85,7 @@ h2 {
     padding: 50px;
     border-radius: 8px;
     transition: background-color 0.3s ease;
-    background-color: rgb(0, 255, 255); /* White background */
+    background-color: rgb(85, 87, 87); /* White background */
 }
 
 .event-box:hover {
