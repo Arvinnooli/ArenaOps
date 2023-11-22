@@ -154,17 +154,36 @@ def ticket(event_id):
     gender=request.form.get('gender')
     age=request.form.get('age')
     contact_no=request.form.get('contact_no')
-   
     
     
     seats_dict = json.loads(seats_dict_str.replace("'", "\""))
-   
-   
 
     booked_ticket_id = functionalites.book(seats_dict,event_id,payment_mode,total_price)
     df.insert_customer(first_name, last_name, gender, age, contact_no, booked_ticket_id)
 
     return render_template('ticket.html', booked_ticket_id=booked_ticket_id, seats_dict=seats_dict, total_price=total_price)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        cursor = db.cursor()
+        # Check if the provided credentials match an admin in the database
+        cursor.execute("SELECT * FROM admin WHERE admin_username = %s AND admin_password = %s", (username, password))
+        admin = cursor.fetchone()
+        cursor.close()
+
+        if admin:
+            # Successful login, redirect to admin panel or specific page
+            return redirect('/admin')  # Replace with your admin panel route
+        else:
+            # Invalid credentials, show login page again with an error message
+            return render_template('login.html', error="Invalid username or password")
+
+    return render_template('login.html')
 
 
 if __name__ == '__main__':

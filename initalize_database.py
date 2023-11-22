@@ -35,7 +35,6 @@ print("Time slots inserted successfully.")
 
 events_data = [
     ('Concert2', 300, 'concert', 1, 3), 
- 
 ]
 
 for event in events_data:
@@ -46,6 +45,11 @@ vendors_data = [
     ('StandB', 'Vendor2', 'merch', 1),
 ]
 
+
+# Insert Admin
+admin_data = ('ashlin', '1234')
+admin_data = ('arvin','lmao')
+df.insert_admin(*admin_data)
 
 
 
