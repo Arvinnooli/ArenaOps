@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block head %}
 <title>Stadium Management System</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
 {% endblock %}
 
 {% block body %}
@@ -56,15 +58,12 @@
                 <tr>
                     <td>{{count['type_']}}</td>
                     <td>{{count['staff_count']}}</td>
-                 </tr>
+                </tr>
                 {%endfor%}
-               
+              
                   
                 </tbody>
         </table>
           
-   
-   
-
 {% endblock %}
 

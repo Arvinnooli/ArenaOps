@@ -5,7 +5,7 @@ import  database_functions as df
 connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
 def fetch_events():
@@ -13,7 +13,7 @@ def fetch_events():
         connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
         cursor = connection.cursor(dictionary=True)
@@ -127,7 +127,7 @@ def show_stand_prices(event_id):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
     cursor=connection.cursor(dictionary=True)
@@ -156,7 +156,7 @@ def show_available_seats(event_id):
         connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
        
@@ -191,7 +191,7 @@ def get_price(standname):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
     cursor=connection.cursor()
@@ -206,7 +206,7 @@ def book(seats_dict,event_id,payment_mode,total_price):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
 
@@ -235,7 +235,7 @@ def get_stand_names(id):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
     cursor = connection.cursor(dictionary=True)
@@ -254,7 +254,7 @@ def show_events_in_city(city):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
        
@@ -269,7 +269,7 @@ def count_of_staff_by_category(id):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
        

@@ -16,7 +16,7 @@ body {
 
 /* Global styles */
 body {
-    background-color: #8ab6d6; /* Light blue background */
+    background-color: #bbc4cd; /* Light blue background */
 }
 
 /* Center the title */
@@ -42,7 +42,7 @@ h1 {
     margin: 15px;
     border: none;
     border-radius: 8px;
-    background-color: rgb(57, 200, 181); /* Green button background */
+    background-color: rgb(55, 62, 61); /* Green button background */
     color: white;
     cursor: pointer;
     font-size: 20px;
@@ -50,7 +50,7 @@ h1 {
 }
 
 .button-box:hover {
-    background-color: #4cdf54; /* Darker green on hover */
+    background-color: #000000; /* Darker green on hover */
 }
 
 /* Set text color of the link */
@@ -84,12 +84,12 @@ h2 {
     margin: 15px;
     padding: 50px;
     border-radius: 8px;
-    background-color: rgb(57, 200, 181); /* White background */
+    background-color: rgb(0, 255, 255) /* White background */
     transition: background-color 0.3s ease;
 }
 
 .event-box:hover {
-    background-color: #4cdf54; /* Darker green on hover */
+    background-color: #030403; /* Darker green on hover */
 }
 
 /* Image styles */
@@ -118,7 +118,7 @@ h2 {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #8ab6d6; /* Light blue background */
+    background-color: #a6b7c3; /* Light blue background */
 }
 
 /* Form styles */
@@ -138,13 +138,13 @@ h2 {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #422f2f;
     box-sizing: border-box;
 }
 
 .event-form button {
     background-color: #4cdf54; /* Green button background */
-    color: white;
+    color: rgb(176, 124, 124);
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
@@ -152,11 +152,11 @@ h2 {
 }
 
 .event-form button:hover {
-    background-color: #45b248; /* Darker green on hover */
+    background-color: #000000; /* Darker green on hover */
 }
 
 .stand-box {
-    background-color: #ffcccc; /* Light red background */
+    background-color: #423737; /* Light red background */
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 15px; /* Adjust as needed */

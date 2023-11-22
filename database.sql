@@ -88,6 +88,11 @@ create table staff(
     stadium_id int
     );
 
+create table admin(
+    admin_id int auto_increment primary key,
+    admin_username varchar(10),
+    admin_password varchar(10)
+    );
 
 create table stadium(
 	stadium_id int  primary key,
