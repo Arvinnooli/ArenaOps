@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
+
 {% block head %}
-<title>Parking Entry</title>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Entry Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 {% endblock %}
+
 {% block body %}
-<form method="POST">
-    <label for="customer_id">Customer ID:</label>
-    <input type="text" id="customer_id" name="customer_id"><br><br>
-    <label for="parking_slot">Parking Slot:</label>
-    <select id="parking_slot" name="parking_slot">
-        <!-- Add options dynamically based on available parking slots -->
-        <option value="slot1">Slot 1</option>
-        <option value="slot2">Slot 2</option>
-        <!-- Add more options as needed -->
-    </select><br><br>
-    <input type="submit" value="Park">
-</form>
+    <div class="centered-box">
+        <div class="event-form">
+            <label for="customer-id">Customer ID:</label>
+            <input type="text" id="customer-id" name="customer-id" placeholder="Enter Customer ID"><br><br>
+
+            <label for="parking-slot">Parking Slot:</label>
+            <select id="parking-slot" name="parking-slot">
+                <option value="slot1">Slot 1</option>
+                <option value="slot2">Slot 2</option>
+                <!-- Add more options as needed -->
+            </select><br><br>
+
+            <button type="submit">Submit</button>
+        </div>
+    </div>
 {% endblock %}
