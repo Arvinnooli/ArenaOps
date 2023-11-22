@@ -91,10 +91,10 @@ def insert_seats(seat_no,stand_name,event_id):
     try:
         cursor = connection.cursor()
         query = """
-        INSERT INTO Seats (Seat_no,stand_name,event_id)
+        INSERT INTO Seats (seat_no,stand_name,event_id)
         VALUES (%s, %s, %s)
         """
-        data = (seat_no,stand_name)
+        data = (seat_no,stand_name,event_id)
         cursor.execute(query, data)
         connection.commit()
         print("Seat information inserted successfully")
