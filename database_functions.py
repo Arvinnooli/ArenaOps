@@ -3,12 +3,12 @@ from mysql.connector import Error
 connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="1234",
+password="lmao#711",
 database="stadium_database"
 )
 
 def insert_customer(first_name, last_name, gender, age, contact_no, ticket_id, location):
-  
+
     try:
         cursor = connection.cursor()
         query = """
