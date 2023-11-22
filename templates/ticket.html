@@ -1,26 +1,22 @@
-
-{% extends 'base.html' %}
-{% block head %}
-<title>Ticket Confirmation</title>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
-
 {% endblock %}
 {% block body %}
-<h2>Ticket Confirmation</h2>
+<div class="centered-box">
+    <div class="confirmation-box">
+        <h2>Ticket Confirmation</h2>
 
-<p>Your ticket has been generated successfully!</p>
-<p>Booking Details:</p>
-<ul>
-  
-  <li>Booked Ticket ID: {{ booked_ticket_id }}</li>
-  <li>Total Price: {{ total_price }}</li>
-  <li>Selected Seats:</li>
-  <ul>
-    {% for stand_name, seat_numbers in seats_dict.items() %}
-      <li>{{ stand_name }}: {{ seat_numbers | join(', ') }}</li>
-    {% endfor %}
-  </ul>
-</ul>
-<button onclick="window.location.href = '/';">Go to Home</button>
-
+        <p>Your ticket has been generated successfully!</p>
+        <p>Booking Details:</p>
+        <ul>
+            <li>Booked Ticket ID: {{ booked_ticket_id }}</li>
+            <li>Total Price: {{ total_price }}</li>
+            <li>Selected Seats:</li>
+            <ul>
+                {% for stand_name, seat_numbers in seats_dict.items() %}
+                    <li>{{ stand_name }}: {{ seat_numbers | join(', ') }}</li>
+                {% endfor %}
+            </ul>
+        </ul>
+        <button onclick="window.location.href = '/';">Go to Home</button>
+    </div>
+</div>
 {% endblock %}

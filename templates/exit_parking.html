@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Parking Exit</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+{% block body %}
+<form method="POST">
+    <label for="customer_id">Customer ID:</label>
+    <input type="text" id="customer_id" name="customer_id"><br><br>
+    <input type="submit" value="Exit">
+</form>
+{% endblock %}
