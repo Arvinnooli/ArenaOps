@@ -85,7 +85,7 @@ h2 {
     padding: 50px;
     border-radius: 8px;
     transition: background-color 0.3s ease;
-    background-color: rgb(0, 255, 255); /* White background */
+    background-color: rgb(85, 87, 87); /* White background */
 }
 
 .event-box:hover {
@@ -144,8 +144,8 @@ h2 {
 }
 
 .event-form button {
-    background-color: #373d37; /* Green button background */
-    color: rgb(255, 255, 255);
+    background-color: #4cdf54; /* Green button background */
+    color: rgb(176, 124, 124);
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
@@ -157,7 +157,7 @@ h2 {
 }
 
 .stand-box {
-    background-color: #f9f4f4; /* Light red background */
+    background-color: #423737; /* Light red background */
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 15px; /* Adjust as needed */
@@ -179,3 +179,46 @@ h2 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
+
+    /* Centered box styles */
+    .centered-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh; /* Adjust the height as needed */
+        background-color: #f3f3f3; /* Light gray background */
+    }
+
+    /* Table styles */
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    button a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    button {
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
