@@ -182,7 +182,8 @@ VALUES
 	('StandC', 30, 1, 120),
     ('StandD', 35, 1, 90);
 
-    
+insert into admin(admin_username ,admin_password) values ('ashlin', '1234'),
+('arvin','lmao');
 
     
 

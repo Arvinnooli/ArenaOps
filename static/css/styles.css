@@ -157,7 +157,7 @@ h2 {
 }
 
 .stand-box {
-    background-color: #423737; /* Light red background */
+    background-color: #979595; /* Light red background */
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 15px; /* Adjust as needed */
@@ -185,8 +185,8 @@ h2 {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 80vh; /* Adjust the height as needed */
-        background-color: #f3f3f3; /* Light gray background */
+        height: 100vh; /* Adjust the height as needed */
+        background-color: #201e1e; /* Light gray background */
     }
 
     /* Table styles */

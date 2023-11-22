@@ -48,7 +48,7 @@ DELIMITER ;
 drop function CreateEventWithTimeSlot;
 -- Call the CreateEventWithTimeSlot function with dummy values
 select CreateEventWithTimeSlot('Dummy Event', 300, 'Sport', 1, '2023-01-01', '12:00:00', '18:00:00') as event_id;
-
+call GetAvailableSeatsForEvent(1);
 
 
 
