@@ -5,7 +5,7 @@ import  database_functions as df
 connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="lmao#711",
+password="1234",
 database="stadium_database"
 )
 def fetch_events():
@@ -13,7 +13,7 @@ def fetch_events():
         connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="lmao#711",
+password="1234",
 database="stadium_database"
 )
         cursor = connection.cursor(dictionary=True)
@@ -115,6 +115,13 @@ def create_event(event_name, no_of_seats, event_type, stadium_id, event_date, st
         return None
 def no_of_available_seats(event_id):
     try:
+        connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
+
         cursor = connection.cursor(dictionary=True)
         cursor.execute("CALL GetAvailableSeatsForEvent(%s)",(event_id,))
         result = cursor.fetchall()
@@ -127,7 +134,7 @@ def show_stand_prices(event_id):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="lmao#711",
+password="1234",
 database="stadium_database"
 )
     cursor=connection.cursor(dictionary=True)
@@ -156,7 +163,7 @@ def show_available_seats(event_id):
         connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="lmao#711",
+password="1234",
 database="stadium_database"
 )
        
@@ -191,7 +198,7 @@ def get_price(standname):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="lmao#711",
+password="1234",
 database="stadium_database"
 )
     cursor=connection.cursor()
@@ -206,7 +213,7 @@ def book(seats_dict,event_id,payment_mode,total_price):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="lmao#711",
+password="1234",
 database="stadium_database"
 )
 
@@ -222,7 +229,7 @@ database="stadium_database"
         
         # Update each seat in the current stand
         for seat_no in seat_numbers:
-            df.update_seat(seat_no, stand_name, ticket_id,event_id)
+            df.update_seat(seat_no, stand_name, event_id,ticket_id)
 
     print("Booking successful")
     return ticket_id
@@ -235,7 +242,7 @@ def get_stand_names(id):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="lmao#711",
+password="1234",
 database="stadium_database"
 )
     cursor = connection.cursor(dictionary=True)
@@ -254,7 +261,7 @@ def show_events_in_city(city):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="lmao#711",
+password="1234",
 database="stadium_database"
 )
        
@@ -269,7 +276,7 @@ def count_of_staff_by_category(id):
     connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="lmao#711",
+password="1234",
 database="stadium_database"
 )
        

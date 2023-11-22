@@ -38,7 +38,7 @@ BEGIN
 	VALUES (eventDate, startTime, endTime);
     -- Insert the event
 	INSERT INTO Event_ (event_name, no_of_seats, type_, stadium_id, time_slot_id)
-	VALUES (eventName, noOfSeats, eventType, stadiumId, last_inser_id);
+	VALUES (eventName, noOfSeats, eventType, stadiumId, last_insert_id());
 	set newEventId=last_insert_id();
 	RETURN last_insert_id() ;
 END //

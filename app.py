@@ -136,7 +136,7 @@ def booking_page(id):
         print(prices)
         
         standnames=functionalites.get_stand_names(id)
-        return render_template('bookingpage.html',id=id,seats=seats,standnames=standnames,prices=prices)
+        return render_template('bookingpage.html',id=id,seats=seats,standnames=standnames,prices=prices,no_of_seats=no_of_seats)
 
 
     

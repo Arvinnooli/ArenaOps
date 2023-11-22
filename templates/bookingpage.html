@@ -6,6 +6,7 @@
 {% block body %}
 <h2>Book seats</h2>
 <form method="POST" action="{{ url_for('booking_page', id=id) }}">
+    <h3>Available seats:{{no_of_seats}}</h3>
     {% for standname in standnames %}
     <div class="stand-box">
         <h3>{{ standname['stand_name'] }}</h3>

@@ -3,11 +3,11 @@ from mysql.connector import Error
 connection = mysql.connector.connect(
 host="localhost",
 user="root",
-password="lmao#711",
+password="1234",
 database="stadium_database"
 )
 
-def insert_customer(first_name, last_name, gender, age, contact_no, ticket_id, location):
+def insert_customer(first_name, last_name, gender, age, contact_no, ticket_id):
 
     try:
         cursor = connection.cursor()
@@ -170,6 +170,7 @@ def get_last_inserted_id():
         print("error while fetching last inserted id")
 
 def update_seat(seat_no,stand_name,event_id,ticket_id):
+    
     try:
         cursor = connection.cursor()
         query = """
