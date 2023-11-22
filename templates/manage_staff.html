@@ -2,68 +2,50 @@
 {% block head %}
 <title>Stadium Management System</title>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
-
 {% endblock %}
 
 {% block body %}
-
+<div class="centered-box">
     <h1>Manage Staff</h1>
     <button><a href="/admin/add_staff">Add Staff</a></button>
     <div class="container">
         <table>
             <thead>
-              <tr>
-                
-                <th>Staff_name</th>
-                <th>Start_Time</th>
-                <th>End_Time</th>
-                <th>Type</th>
-                
-              </tr>
+                <tr>
+                    <th>Staff_name</th>
+                    <th>Start_Time</th>
+                    <th>End_Time</th>
+                    <th>Type</th>
+                </tr>
             </thead>
-            
             <tbody>
-                
-            {%for staff in staff_list%}
-              <tr>
-                <td>{{staff['staff_name']}}</td>
-                <td>{{staff['staff_start_time']}}</td>
-                <td>{{staff['staff_end_time']}}</td>
-                <td>{{staff['type_']}}</td>
-
-                
-                <td><button><a href="/admin/delete_staff/{{staff['staff_id']}}">Remove</a></button></td>
-              </tr>
-            {%endfor%}
-        
-        
-              
+                {% for staff in staff_list %}
+                <tr>
+                    <td>{{ staff['staff_name'] }}</td>
+                    <td>{{ staff['staff_start_time'] }}</td>
+                    <td>{{ staff['staff_end_time'] }}</td>
+                    <td>{{ staff['type_'] }}</td>
+                    <td><button><a href="/admin/delete_staff/{{ staff['staff_id'] }}">Remove</a></button></td>
+                </tr>
+                {% endfor %}
             </tbody>
-          </table>
-        </div>
-        
-          <table>
-            <thead>
-                <tr>
-                  
-                  <th>Staff_type</th>
-                  
-                  <th>Staff_count</th>
-                  
-                </tr>
-              </thead>
-              <tbody>
-                
-                {%for count in counts%}
-                <tr>
-                    <td>{{count['type_']}}</td>
-                    <td>{{count['staff_count']}}</td>
-                </tr>
-                {%endfor%}
-              
-                  
-                </tbody>
         </table>
-          
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Staff_type</th>
+                <th>Staff_count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for count in counts %}
+            <tr>
+                <td>{{ count['type_'] }}</td>
+                <td>{{ count['staff_count'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
-
