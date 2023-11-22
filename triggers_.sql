@@ -1,51 +1,55 @@
+use stadium_database;
 DELIMITER //
 CREATE TRIGGER before_insert_event
 BEFORE INSERT ON Event_
 FOR EACH ROW
 BEGIN
-    DECLARE total_seats INT;
+    DECLARE total_stand_capacity INT;
 
-    -- Retrieve the total number of seats in the stadium
-    SELECT COUNT(*) INTO total_seats
-    FROM stadium AS st
-    JOIN stands AS s ON st.stadium_id = s.stadium_id
-    JOIN seats AS se ON s.stand_name = se.stand_name;
+  
+    SELECT SUM(stand_capacity) INTO total_stand_capacity
+    FROM Stands
+    WHERE stadium_id = NEW.stadium_id;
 
-    -- Check if the _no_of_seats for the new event exceeds the total seating capacity
-    IF NEW.no_of_seats > total_seats THEN
+   
+    IF NEW.no_of_seats > total_stand_capacity THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Error: The number of seats exceeds the total seating capacity';
+        SET MESSAGE_TEXT = 'No of seats exceeds stadium capacity';
     END IF;
-END;
-//
+END //
 DELIMITER ;
+
+
+
 DELIMITER //
 
-CREATE TRIGGER CheckTimeSlotOverlap
-BEFORE INSERT ON Timing
+CREATE TRIGGER after_update_customer_location
+AFTER UPDATE ON Customer
 FOR EACH ROW
 BEGIN
-    DECLARE existing_start_time TIME;
-    DECLARE existing_end_time TIME;
-
-    -- Check for overlapping time slots
-    SELECT start_time, end_time
-    INTO existing_start_time, existing_end_time
-    FROM Timing
-    WHERE NEW.date_ = date_
-    AND (NEW.start_time BETWEEN start_time AND end_time
-         OR NEW.end_time BETWEEN start_time AND end_time
-         OR (NEW.start_time <= start_time AND NEW.end_time >= end_time));
-
-    IF existing_start_time IS NOT NULL AND existing_end_time IS NOT NULL THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'New time slot overlaps with an existing time slot';
+    -- Check if the location is set (NOT NULL)
+    IF NEW.location IS NOT NULL THEN
+        -- Update parking status to 'occupied'
+        UPDATE Parking
+        SET status = 'occupied'
+        WHERE location = NEW.location;
+    ELSE
+        -- Update parking status to 'not occupied'
+        UPDATE Parking
+        SET status = 'not occupied'
+        WHERE location = OLD.location; -- Use OLD.location since it's the value before the update
     END IF;
 END //
 
 DELIMITER ;
 
 DELIMITER //
+
+
+
+
+
+
 
 
 

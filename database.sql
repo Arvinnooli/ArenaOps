@@ -1,6 +1,7 @@
 create database stadium_database;
 
 use stadium_database;
+
 create table Customer(
 	customer_id int primary key,
     first_name char(15) NOT NULL,
@@ -64,7 +65,8 @@ create table Event_(
 create table Stands(
 	stand_name varchar(20) primary key,
 	stand_price int not null,
-    stadium_id int
+    stadium_id int,
+    stand_capacity int
 );
 
 
@@ -90,9 +92,10 @@ create table staff(
 create table stadium(
 	stadium_id int  primary key,
     stadium_name varchar(20),
-    stadium_location varchar(20),
-    stadium_capacity int
+    stadium_location varchar(20)
+    
     );
+
 
 -- Add foreign key constraint for ticket_id
 ALTER TABLE Customer
@@ -173,6 +176,7 @@ VALUES
     ('StandB', 40, 1, 80),
 	('StandC', 30, 1, 120),
     ('StandD', 35, 1, 90);
+
     
 
     

@@ -55,21 +55,51 @@ def fetch_vendors(id):
     except Error as e:
         print(f"Error: {e}")
         return None
+def calculate_and_insert_seats(event_id):
+    try:
+        cursor = connection.cursor()
 
+        # Get the total number of seats and the number of stands for the given event
+        query_event = "SELECT no_of_seats, stadium_id FROM Event_ WHERE event_id = %s"
+        cursor.execute(query_event, (event_id,))
+        event_data = cursor.fetchone()
+        if not event_data:
+            print("Event not found.")
+            return
+
+        total_seats = event_data[0]
+
+        query_stands = "SELECT stand_name FROM Stands WHERE stadium_id = %s"
+        cursor.execute(query_stands, (event_data[1],))
+        stands = cursor.fetchall()
+        total_stands = len(stands)
+
+        # Calculate the number of seats for each stand
+        seats_per_stand = total_seats // total_stands
+        remaining_seats = total_seats % total_stands
+
+        # Insert seats for each stand using the insert_seats function
+        for stand in stands:
+            for i in range(1,seats_per_stand):
+                df.insert_seats(i, stand[0], event_id)
+
+        print("Seats information calculated and inserted successfully")
+    except Error as e:
+        print(f"Error: {e}")
 
 def create_event(event_name, no_of_seats, event_type, stadium_id, event_date, start_time, end_time):
     try:
         cursor = connection.cursor()
 
-        # Call the stored function to create an event and get the event_id
-        cursor.callproc("CreateEventWithTimeSlot", (
+       
+        cursor.execute("select CreateEventWithTimeSlot(%s,%s,%s,%s,%s,%s,%s)", (
             event_name,
             no_of_seats,
             event_type,
             stadium_id,
             event_date,
             start_time,
-            end_time
+            end_time,
         ))
 
         # Fetch the result (event_id) from the stored function
@@ -77,6 +107,7 @@ def create_event(event_name, no_of_seats, event_type, stadium_id, event_date, st
 
         # Commit the changes to the database
         connection.commit()
+        calculate_and_insert_seats(result[0])
 
         return result[0]  # Assuming the result is a tuple with a single element (event_id)
     except mysql.connector.Error as err:
@@ -252,6 +283,15 @@ GROUP BY st.type_;
     return counts
 
 
+# create_event(
+#     event_name="Dummy Concert",
+#     no_of_seats=350,
+#     event_type="concert",
+#     stadium_id=1,
+#     event_date="2023-12-01",
+#     start_time="18:00:00",
+#     end_time="22:00:00"
+# )
 
 
 
