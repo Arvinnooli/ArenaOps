@@ -3,7 +3,7 @@ create database stadium_database;
 use stadium_database;
 
 create table Customer(
-	customer_id int primary key,
+	customer_id int  auto_increment primary key,
     first_name char(15) NOT NULL,
     last_name char(15) NOT NULL,
     gender ENUM('M','F') not null,
@@ -12,6 +12,7 @@ create table Customer(
     ticket_id int,
     location varchar(7)
 );
+
 
 
     
@@ -27,10 +28,9 @@ create table Ticket(
 
 create table Parking(
 	location varchar(7) primary key,
-    number_plate char(10) ,
-    status enum('occupied','not occupied') default 'not occupied',
-    automobile_type enum('4-wheeler','2-wheeler')
+    status enum('occupied','not occupied') default 'not occupied'
     );
+
 
 
 create table Timing(
@@ -61,6 +61,7 @@ create table Event_(
     stadium_id int,
     time_slot_id int
     );
+
 
 create table Stands(
 	stand_name varchar(20) primary key,
@@ -116,6 +117,7 @@ ADD CONSTRAINT fk_location_customer
 FOREIGN KEY (location)
 REFERENCES Parking(location)
 on update cascade;
+alter table customer drop constraint fk_location_customer;
 
 -- Add foreign key constraint for stadium_id
 ALTER TABLE Event_
@@ -185,8 +187,23 @@ VALUES
 insert into admin(admin_username ,admin_password) values ('ashlin', '1234'),
 ('arvin','lmao');
 
+INSERT INTO Parking (location, status) VALUES
+('A1', 'not occupied'),
+('A2', 'not occupied'),
+('A3', 'not occupied'),
+('B1', 'not occupied'),
+('B2', 'not occupied'),
+('C1', 'not occupied'),
+('C2', 'not occupied'),
+('D1', 'not occupied'),
+('D2', 'not occupied'),
+('E1', 'not occupied');
     
-
+INSERT INTO Customer (customer_id, first_name, last_name, gender, age, contact_no, ticket_id)
+VALUES
+(1, 'John', 'Doe', 'M', 30, '1234567890', 2),
+(2, 'Jane', 'Doe', 'F', 25, '9876543210', 4),
+(3, 'Bob', 'Smith', 'M', 35, '5556667777', 5);
 
 
 

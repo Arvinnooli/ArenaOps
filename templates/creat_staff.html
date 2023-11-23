@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Create Staff - Stadium Management System</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
+{% endblock %}
+
+{% block body %}
+<div class="centered-box">
+    <div class="form-container">
+        <h1>Create Staff</h1>
+        <form class="create-staff-form" method="POST" action="/admin/add_staff">
+            <label for="staff_name">Staff Name:</label>
+            <input type="text" id="staff_name" name="staff_name" required>
+            
+            <label for="start_time">Start Time:</label>
+            <input type="text" name="staff_start_time"  placeholder="hh:mm::ss" required>
+            <label for="end_time">End Time:</label>
+            <input type="text" placeholder="hh:mm::ss" name="staff_end_time" required>
+           
+
+            <label for="type">Type:</label>
+            <select name="type_" required>
+                <option value="ticketing">ticketing</option>
+                <option value="hospitality">hospitality</option>
+                <option value="security">security</option>
+                <option value="cleaning">cleaning</option>
+            </select>
+
+            <button type="submit">Create Staff</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

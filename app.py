@@ -75,8 +75,8 @@ def manage_staff():
     counts=functionalites.count_of_staff_by_category(1)
     return render_template('manage_staff.html',staff_list=staff_list,counts=counts)
 
-@app.route('/admin/add_staff/<int:id>', methods=['GET', 'POST'])
-def create_staff(id):
+@app.route('/admin/add_staff', methods=['GET', 'POST'])
+def create_staff():
     if request.method == 'POST':
         
         staff_name=request.form['staff_name']
@@ -84,10 +84,10 @@ def create_staff(id):
         staff_start_time = request.form['staff_start_time']
         staff_end_time = request.form['staff_end_time']
         
-        df.insert_staff(staff_name, staff_start_time, staff_end_time)
-        return redirect('/admin/manage_staff')
+        df.insert_staff(staff_name, staff_start_time, staff_end_time,type_,1)
+        return redirect('/admin/manage_staff',)
 
-    return render_template('add_staff.html')
+    return render_template('creat_staff.html')
 
 
 @app.route('/admin/delete_staff/<int:id>')
@@ -203,14 +203,18 @@ def entry():
         customer_id = request.form['customer_id']
         selected_slot = request.form['parking_slot']
         # Process the parking entry
+        functionalites.update_location_in_customer(customer_id,selected_slot)
         return f"Parking entry recorded for Customer ID: {customer_id} in Slot: {selected_slot}"
-    return render_template('entry_parking.html')
+    else:
+        available_slots=functionalites.get_available_slots()
+        return render_template('entry_parking.html',available_slots=available_slots)
 
 @app.route('/exit', methods=['GET', 'POST'])
 def exit():
     if request.method == 'POST':
         # Logic to handle parking exit form submission
         customer_id = request.form['customer_id']
+        functionalites.exit_customer(customer_id)
         # Process the parking exit
         return f"Parking exit recorded for Customer ID: {customer_id}"
     return render_template('exit_parking.html')

@@ -19,6 +19,8 @@ BEGIN
 END //
 DELIMITER ;
 
+drop trigger before_insert_event;
+
 
 
 DELIMITER //
@@ -43,11 +45,13 @@ END //
 
 DELIMITER ;
 
-DELIMITER //
 
 
 
 
+SELECT SUM(stand_capacity) 
+    FROM Stands
+    WHERE stadium_id =1;
 
 
 

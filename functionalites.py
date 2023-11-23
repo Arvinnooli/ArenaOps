@@ -92,7 +92,7 @@ def create_event(event_name, no_of_seats, event_type, stadium_id, event_date, st
         cursor = connection.cursor()
 
        
-        cursor.execute("select CreateEventWithTimeSlot(%s,%s,%s,%s,%s,%s,%s)", (
+        cursor.execute("CALL CreateEventWithTimeSlot(%s,%s,%s,%s,%s,%s,%s)", (
             event_name,
             no_of_seats,
             event_type,
@@ -289,7 +289,43 @@ GROUP BY st.type_;
     counts=cursor.fetchall()
     return counts
 
+def get_available_slots():
+    connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
+       
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute("""select location from parking where status='not occupied'""")
+    slots=cursor.fetchall()
+    return slots
+    
 
+def update_location_in_customer(customer_id,location):
+    connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
+       
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute("""update customer set location=%s where customer_id=%s""",(location,customer_id,))
+    connection.commit()
+    return
+def exit_customer(customer_id):
+    connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
+    cursor=connection.cursor(dictionary=True)
+    cursor.execute("""update customer set location=NULL where customer_id=%s""",(customer_id,))
+    connection.commit()
+    
 # create_event(
 #     event_name="Dummy Concert",
 #     no_of_seats=350,

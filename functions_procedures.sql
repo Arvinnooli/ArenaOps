@@ -20,38 +20,44 @@ DELIMITER ;
 
 
 DELIMITER //
-CREATE FUNCTION CreateEventWithTimeSlot(
+
+CREATE PROCEDURE CreateEventWithTimeSlot(
     eventName VARCHAR(20),
     noOfSeats INT,
-    eventType ENUM('Sport','concert'),
+    eventType ENUM('Sport', 'concert'),
     stadiumId INT,
     eventDate DATE,
     startTime TIME,
     endTime TIME
+   
 )
-RETURNS INT
-DETERMINISTIC
 BEGIN
-    declare newEventId int;
--- Insert the corresponding time slot
+    DECLARE newTimeSlotId INT;
+    
+    -- Insert the corresponding time slot
     INSERT INTO Timing (date_, start_time, end_time)
-	VALUES (eventDate, startTime, endTime);
-    -- Insert the event
-	INSERT INTO Event_ (event_name, no_of_seats, type_, stadium_id, time_slot_id)
-	VALUES (eventName, noOfSeats, eventType, stadiumId, last_insert_id());
-	set newEventId=last_insert_id();
-	RETURN last_insert_id() ;
+    VALUES (eventDate, startTime, endTime);
+    
+    -- Get the last inserted time slot ID
+    SET newTimeSlotId = LAST_INSERT_ID();
+    
+    -- Insert the event using the obtained time slot ID
+    INSERT INTO Event_ (event_name, no_of_seats, type_, stadium_id, time_slot_id)
+    VALUES (eventName, noOfSeats, eventType, stadiumId, newTimeSlotId);
+    SELECT LAST_INSERT_ID() AS newEventId;
+   
 END //
-DELIMITER ;
 
+DELIMITER ;
 
 drop function CreateEventWithTimeSlot;
 -- Call the CreateEventWithTimeSlot function with dummy values
-select CreateEventWithTimeSlot('Dummy Event', 300, 'Sport', 1, '2023-01-01', '12:00:00', '18:00:00') as event_id;
+call CreateEventWithTimeSlot('Dummy Event', 300, 'Sport', 1, '2023-01-01', '12:00:00', '18:00:00');
 call GetAvailableSeatsForEvent(1);
 
 
-
+INSERT INTO Event_ (event_name, no_of_seats, type_, stadium_id)
+    VALUES ('Dummy Event', 300, 'Sport', 1);
 
 
 

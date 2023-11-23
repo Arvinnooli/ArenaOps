@@ -10,6 +10,12 @@ database="stadium_database"
 def insert_customer(first_name, last_name, gender, age, contact_no, ticket_id):
 
     try:
+        connection = mysql.connector.connect(
+host="localhost",
+user="root",
+password="1234",
+database="stadium_database"
+)
         cursor = connection.cursor()
         query = """
         INSERT INTO Customer (first_name, last_name, gender, age, contact_no, ticket_id)
