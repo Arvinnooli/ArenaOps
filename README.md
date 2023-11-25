@@ -11,6 +11,6 @@
 
 Now, you can access the Stadium Management System through your web browser.
 
-Feel free to update the instructions based on your specific project structure or requirements.
+
 
 
