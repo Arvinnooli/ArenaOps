@@ -49,9 +49,7 @@ DELIMITER ;
 
 
 
-SELECT SUM(stand_capacity) 
-    FROM Stands
-    WHERE stadium_id =1;
+
 
 
 

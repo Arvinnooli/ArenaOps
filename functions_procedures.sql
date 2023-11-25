@@ -50,14 +50,11 @@ END //
 
 DELIMITER ;
 
-drop function CreateEventWithTimeSlot;
--- Call the CreateEventWithTimeSlot function with dummy values
-call CreateEventWithTimeSlot('Dummy Event', 300, 'Sport', 1, '2023-01-01', '12:00:00', '18:00:00');
-call GetAvailableSeatsForEvent(1);
 
 
-INSERT INTO Event_ (event_name, no_of_seats, type_, stadium_id)
-    VALUES ('Dummy Event', 300, 'Sport', 1);
+
+
+
 
 
 

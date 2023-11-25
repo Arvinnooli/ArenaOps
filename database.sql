@@ -93,14 +93,14 @@ create table admin(
     admin_id int auto_increment primary key,
     admin_username varchar(10),
     admin_password varchar(10)
+    
     );
 
 create table stadium(
 	stadium_id int  primary key,
     stadium_name varchar(20),
     stadium_location varchar(20)
-    
-    );
+	);
 
 
 -- Add foreign key constraint for ticket_id
@@ -117,7 +117,7 @@ ADD CONSTRAINT fk_location_customer
 FOREIGN KEY (location)
 REFERENCES Parking(location)
 on update cascade;
-alter table customer drop constraint fk_location_customer;
+
 
 -- Add foreign key constraint for stadium_id
 ALTER TABLE Event_
@@ -147,7 +147,8 @@ REFERENCES Ticket(ticket_id);
 ALTER TABLE Seats
 ADD CONSTRAINT fk_event_seats
 FOREIGN KEY (event_id)
-REFERENCES Event_(event_id);
+REFERENCES Event_(event_id)
+on delete cascade;
 -- Add foreign key constraint for stadium_id in Stands table
 ALTER TABLE Stands
 ADD CONSTRAINT fk_stadium_stands
@@ -176,14 +177,24 @@ REFERENCES stadium(stadium_id)
 ON UPDATE CASCADE;
 
 
-
+INSERT INTO stadium values('1','stadium1','bangalore');
 INSERT INTO Stands (stand_name, stand_price, stadium_id, stand_capacity)
 VALUES 
     ('StandA', 50, 1, 100),
     ('StandB', 40, 1, 80),
 	('StandC', 30, 1, 120),
     ('StandD', 35, 1, 90);
-
+INSERT INTO Vendor (stand_name, Vendor_name, category, stadium_id)
+VALUES 
+    ('StandA', 'Vendor1', 'food', 1),
+    ('StandB', 'Vendor2', 'merch', 1),
+    ('StandC', 'Vendor3', 'food', 1);
+INSERT INTO staff (staff_name, staff_start_time, staff_end_time, type_, stadium_id)
+VALUES
+    ('Staff1', '09:00:00', '17:00:00', 'hospitality', 1),
+    ('Staff2', '10:00:00', '18:00:00', 'ticketing', 1),
+    ('Staff3', '12:00:00', '20:00:00', 'security', 1),
+    ('Staff4', '08:00:00', '16:00:00', 'cleaning', 1);
 insert into admin(admin_username ,admin_password) values ('ashlin', '1234'),
 ('arvin','lmao');
 
@@ -198,12 +209,11 @@ INSERT INTO Parking (location, status) VALUES
 ('D1', 'not occupied'),
 ('D2', 'not occupied'),
 ('E1', 'not occupied');
+
+
+
     
-INSERT INTO Customer (customer_id, first_name, last_name, gender, age, contact_no, ticket_id)
-VALUES
-(1, 'John', 'Doe', 'M', 30, '1234567890', 2),
-(2, 'Jane', 'Doe', 'F', 25, '9876543210', 4),
-(3, 'Bob', 'Smith', 'M', 35, '5556667777', 5);
+
 
 
 

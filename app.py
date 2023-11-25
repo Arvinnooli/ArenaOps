@@ -85,7 +85,7 @@ def create_staff():
         staff_end_time = request.form['staff_end_time']
         
         df.insert_staff(staff_name, staff_start_time, staff_end_time,type_,1)
-        return redirect('/admin/manage_staff',)
+        return redirect('/admin/manage_staff')
 
     return render_template('creat_staff.html')
 
