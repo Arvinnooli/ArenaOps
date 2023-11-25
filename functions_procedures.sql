@@ -18,9 +18,7 @@ BEGIN
 END //
 DELIMITER ;
 
-
 DELIMITER //
-
 CREATE PROCEDURE CreateEventWithTimeSlot(
     eventName VARCHAR(20),
     noOfSeats INT,
@@ -29,26 +27,30 @@ CREATE PROCEDURE CreateEventWithTimeSlot(
     eventDate DATE,
     startTime TIME,
     endTime TIME
-   
 )
 BEGIN
     DECLARE newTimeSlotId INT;
-    
+    DECLARE newEventId INT;
+
     -- Insert the corresponding time slot
     INSERT INTO Timing (date_, start_time, end_time)
     VALUES (eventDate, startTime, endTime);
-    
+
     -- Get the last inserted time slot ID
     SET newTimeSlotId = LAST_INSERT_ID();
-    
+
     -- Insert the event using the obtained time slot ID
     INSERT INTO Event_ (event_name, no_of_seats, type_, stadium_id, time_slot_id)
     VALUES (eventName, noOfSeats, eventType, stadiumId, newTimeSlotId);
-    SELECT LAST_INSERT_ID() AS newEventId;
-   
-END //
 
+    -- Store the last inserted event ID in a session variable
+    SET newEventId = LAST_INSERT_ID();
+
+    -- Return the new event ID
+    SELECT newEventId AS newEventId;
+END //
 DELIMITER ;
+
 
 
 

@@ -46,7 +46,7 @@ create table Seats(
 	ticket_id int,
     stand_name varchar(20),
     event_id int,
-    PRIMARY KEY (Seat_no, stand_name)
+    PRIMARY KEY (Seat_no, stand_name,event_id)
     );
 
 
@@ -93,7 +93,6 @@ create table admin(
     admin_id int auto_increment primary key,
     admin_username varchar(10),
     admin_password varchar(10)
-    
     );
 
 create table stadium(
@@ -209,6 +208,24 @@ INSERT INTO Parking (location, status) VALUES
 ('D1', 'not occupied'),
 ('D2', 'not occupied'),
 ('E1', 'not occupied');
+
+-- Inserting sample timeslots
+INSERT INTO Timing (date_, start_time, end_time) VALUES
+('2023-11-15', '09:00:00', '12:00:00'),
+('2023-11-15', '14:00:00', '17:00:00'),
+('2023-11-16', '10:30:00', '13:30:00'),
+('2023-11-16', '18:00:00', '21:00:00');
+
+
+-- Inserting sample events
+INSERT INTO Event_ (event_name, no_of_seats, type_, stadium_id, time_slot_id) VALUES
+('Sports Event 1', 300, 'Sport', 1, 1),
+('Concert 1', 250, 'concert', 1, 2),
+('Sports Event 2', 280, 'Sport', 1, 3),
+('Concert 2', 350, 'concert', 1, 4);
+
+
+
 
 
 
