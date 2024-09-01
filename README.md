@@ -1,6 +1,6 @@
 # ArenaOps
 
-# A stadium Management System
+# A Stadium Management System
 
 This project encompasses a comprehensive stadium management system built using Flask. The system allows administrators to manage events, staff, and parking, providing a seamless experience for both staff and attendees.
 
